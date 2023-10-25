@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  Sample orb description
+  Simplify your pull request reviews by automatically generating QR codes linked to your app builds for Android, iOS and macOS. This CLI allows code reviewers to easily download and test the app in a real-world environment, making the review process more effective and efficient.
 # What will your orb allow users to accomplish?
 # Descriptions should be short, simple, and informative.
 
