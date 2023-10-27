@@ -6,15 +6,22 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
+  circle_token:
+    description: >
+      CircleCI token for fetching flaky tests via API.
+      If not specified, CIRCLE_TOKEN environment variable will be used.
+      Please refer to this document how to generate it.
+      https://circleci.com/docs/managing-api-tokens (requires a v2 token)
+    default: $CIRCLE_TOKEN
+    type: string
 steps:
   - store_artifacts:
       path: <<parameters.path>>
   - run:
       name: Get $ARTIFACT_URL
-      command: |
-        project_slug=$(echo "$CIRCLE_BUILD_URL" | sed -e "s|https://circleci.com/%7C%7Cg" -e "s|/[0-9]*$||g")
-        artifacts=$(curl -X GET "https://circleci.com/api/v2/project/$project_slug/$CIRCLE_BUILD_NUM/artifacts" \
-        -H "Accept: application/json" \
-        -u "$CIRCLE_API_TOKEN:")
-        echo "export ARTIFACT_URL=$(echo $artifacts | jq '.items[0].url')" >> $BASH_ENV
-  - run: echo $ARTIFACT_URL
+      environment:
+        CIRCLE_TOKEN: <<parameters.circle_token>>
+      command: <<include(scripts/get_artifact_url.sh)>>
+  - run:
+      name: Echo $ARTIFACT_URL
+      command: echo $ARTIFACT_URL
