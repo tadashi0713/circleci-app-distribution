@@ -4,4 +4,4 @@ project_slug=$(echo "$CIRCLE_BUILD_URL" | sed -e "s|https://circleci.com/%7C%7Cg
 artifacts=$(curl -X GET "https://circleci.com/api/v2/project/$project_slug/$CIRCLE_BUILD_NUM/artifacts" \
 -H "Accept: application/json" \
 -u "$CIRCLE_API_TOKEN:")
-echo "export ARTIFACT_URL=$(echo \"$artifacts\" | jq \".items[0].url\")" >> $BASH_ENV
+echo "export ARTIFACT_URL=$(echo "$artifacts" | jq '.items[0].url')" >> "$BASH_ENV"
