@@ -28,7 +28,8 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - app-distribution/greet
+      - app-distribution/upload:
+          path: app/app.apk
 workflows:
   test-deploy:
     jobs:
