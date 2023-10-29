@@ -29,7 +29,7 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - app-distribution/upload:
-          path: app/app.apk
+          path: app/bitbar-sample-app.apk
 workflows:
   test-deploy:
     jobs:
