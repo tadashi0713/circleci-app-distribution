@@ -31,7 +31,7 @@ jobs:
       - app-distribution/upload:
           path: app/bitbar-sample-app.apk
       - app-distribution/upload:
-          path: app/ios-sample.ipa
+          path: app/bitbar-ios-sample.ipa
 workflows:
   test-deploy:
     jobs:
