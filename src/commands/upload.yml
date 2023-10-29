@@ -21,7 +21,13 @@ steps:
       name: Get $ARTIFACT_URL
       environment:
         CIRCLE_TOKEN: <<parameters.circle_token>>
-      command: <<include(scripts/get_artifact_url.sh)>>
+      # command: <<include(scripts/get_artifact_url.sh)>>
+      command: |
+        project_slug=$(echo "$CIRCLE_BUILD_URL" | sed -e "s|https://circleci.com/%7C%7Cg" -e "s|/[0-9]*$||g")
+        artifacts=$(curl -X GET "https://circleci.com/api/v2/project/$project_slug/$CIRCLE_BUILD_NUM/artifacts" \
+        -H "Accept: application/json" \
+        -u "$CIRCLE_TOKEN:")
+        echo "export ARTIFACT_URL=$(echo $artifacts | jq '.items[0].url')" >> $BASH_ENV
   - run:
       name: Echo $ARTIFACT_URL
       command: echo $ARTIFACT_URL
