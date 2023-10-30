@@ -22,7 +22,11 @@ steps:
       environment:
         CIRCLE_TOKEN: <<parameters.circle_token>>
       command: <<include(scripts/get_artifact_url.sh)>>
-
   - run:
       name: Echo $ARTIFACT_URL
       command: echo $ARTIFACT_URL
+  - run:
+      name: Generate page
+      command: <<include(scripts/generate_page.sh)>> >> page.html
+  - store_artifacts:
+      path: page.html
