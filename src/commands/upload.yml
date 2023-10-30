@@ -27,6 +27,6 @@ steps:
       command: echo $ARTIFACT_URL
   - run:
       name: Generate page
-      command: <<include(scripts/generate_page.sh)>> >> page.html
+      command: <<include(scripts/generate_page.sh)>>
   - store_artifacts:
       path: page.html

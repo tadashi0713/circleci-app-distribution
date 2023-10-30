@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<- _EOF_
+cat > page.html <<- _EOF_
 <html>
   <head>
     <title>My System Information</title>
