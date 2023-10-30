@@ -6,18 +6,19 @@ cat > page.html <<- _EOF_
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>CircleCI App Distribution</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
   <body>
   <section class="section">
-    <div class="container">
+    <div class="container has-text-centered">
       <h1 class="title">
-        Hello World
+        CircleCI App Distribution
       </h1>
       <p class="subtitle">
         My first website with <strong>Bulma</strong>!
       </p>
+      <a class="button is-dark" href="${ARTIFACT_URL}">Download</a>
     </div>
   </section>
   </body>
