@@ -21,7 +21,7 @@ steps:
       name: Get $ARTIFACT_URL
       environment:
         CIRCLE_TOKEN: <<parameters.circle_token>>
-      command: <<include(scripts/get_artifact_url.sh)>>
+      command: <<include(scripts/get_latest_artifact_url.sh)>>
   - run:
       name: Echo $ARTIFACT_URL
       command: echo $ARTIFACT_URL
@@ -30,3 +30,11 @@ steps:
       command: <<include(scripts/generate_page.sh)>>
   - store_artifacts:
       path: page.html
+  - run:
+      name: Get $ARTIFACT_URL
+      environment:
+        CIRCLE_TOKEN: <<parameters.circle_token>>
+      command: <<include(scripts/get_latest_artifact_url.sh)>>
+  - run:
+      name: Echo $ARTIFACT_URL
+      command: echo $ARTIFACT_URL
