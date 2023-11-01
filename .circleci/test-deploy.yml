@@ -3,6 +3,7 @@ orbs:
   # Your orb will be automatically injected here during the pipeline.
   # Reference your orb's jobs and commands below as they will exist when built.
   orb-tools: circleci/orb-tools@12.0
+  android: circleci/android@2.3.0
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
   app-distribution: {}
 
@@ -32,12 +33,23 @@ jobs:
           path: app/bitbar-sample-app.apk
       # - app-distribution/upload:
       #     path: app/bitbar-ios-sample.ipa
+  test-android-env:
+    executor:
+      name: android/android-machine
+      tag: 2023.10.1
+    steps:
+      - checkout
+      - app-distribution/upload:
+          path: app/bitbar-sample-app.apk
+
 workflows:
   test-deploy:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
+          filters: *filters
+      - test-android-env:
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
