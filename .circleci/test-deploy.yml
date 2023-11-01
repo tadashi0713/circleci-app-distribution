@@ -41,6 +41,14 @@ jobs:
       - checkout
       - app-distribution/upload:
           path: app/bitbar-sample-app.apk
+  test-ios-env:
+    macos:
+      xcode: 14.3.1
+    resource_class: macos.m1.medium.gen1
+    steps:
+      - checkout
+      - app-distribution/upload:
+          path: app/bitbar-ios-sample.ipa
 
 workflows:
   test-deploy:
@@ -50,6 +58,8 @@ workflows:
       - command-test:
           filters: *filters
       - test-android-env:
+          filters: *filters
+      - test-ios-env:
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
