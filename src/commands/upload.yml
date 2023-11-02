@@ -18,7 +18,7 @@ steps:
   - store_artifacts:
       path: <<parameters.path>>
   - run:
-      name: Get $ARTIFACT_URL
+      name: Get artifact url
       environment:
         CIRCLE_TOKEN: <<parameters.circle_token>>
       command: <<include(scripts/get_latest_artifact_url.sh)>>
