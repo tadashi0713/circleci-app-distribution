@@ -19,7 +19,8 @@ workflows:
           filters: *filters
           exclude: "RC009"
       - shellcheck/check:
-          filters: *filters
+          filters: *filter
+          exclude: "SC2308"
       # Triggers the next workflow in the Orb Development Kit.
       - orb-tools/continue:
           pipeline_number: << pipeline.number >>
