@@ -26,16 +26,10 @@ steps:
       name: Echo $ARTIFACT_URL
       command: echo $ARTIFACT_URL
   - run:
-      name: Create page name
-      command: echo "export PAGE_NAME=$(date +%s)" >> "$BASH_ENV"
-  - run:
-      name: Echo $PAGE_NAME
-      command: echo $PAGE_NAME
-  - run:
       name: Generate page
       command: <<include(scripts/generate_page.sh)>>
   - store_artifacts:
-      path: $PAGE_NAME.html
+      path: page.html
   - run:
       name: Get $ARTIFACT_URL
       environment:

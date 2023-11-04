@@ -23,16 +23,6 @@ release-filters: &release-filters
 jobs:
   # Create jobs to test the commands of your orbs.
   # You may want to add additional validation steps to ensure the commands are working as expected.
-  test-multiple-upload:
-    docker:
-      - image: cimg/base:current
-    steps:
-      - checkout
-      # Run your orb's commands to validate them.
-      - app-distribution/upload:
-          path: app/bitbar-sample-app.apk
-      - app-distribution/upload:
-          path: app/bitbar-ios-sample.ipa
   test-android-env:
     executor:
       name: android/android-machine

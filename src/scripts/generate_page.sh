@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > "$PAGE_NAME".html <<- _EOF_
+cat > page.html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>
