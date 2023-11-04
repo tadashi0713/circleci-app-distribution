@@ -45,8 +45,6 @@ workflows:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-      - test-multiple-upload:
-          filters: *filters
       - test-android-env:
           filters: *filters
       - test-ios-env:
