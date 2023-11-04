@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > "$(date +%s)".html <<- _EOF_
+cat > "$PAGE_NAME".html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>
