@@ -38,3 +38,6 @@ steps:
   - run:
       name: Echo $ARTIFACT_URL
       command: echo $ARTIFACT_URL
+  - run:
+      name: Install qrencode
+      command: <<include(scripts/install_qrencode.sh)>>
