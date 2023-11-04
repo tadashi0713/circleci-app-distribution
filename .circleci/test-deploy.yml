@@ -59,7 +59,6 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - test-multiple-upload
             - test-android-env
             - test-ios-env
           context: orb-publishing
