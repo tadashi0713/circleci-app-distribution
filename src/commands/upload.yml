@@ -40,5 +40,5 @@ steps:
   - run:
       name: Generate & show QR Code
       command: |
-        echo "You can now install app via CircleCI App Distribution\n$APP_URL\n\n"
+        echo "You can now debug app\n$APP_URL\n\n"
         qrencode -t ansi $APP_URL
