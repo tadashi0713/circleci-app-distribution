@@ -49,7 +49,7 @@ cat > page.html <<- _EOF_
             </tbody>
           </table>
           <div class="has-text-centered">
-            <a class="button is-dark has-text-centered is-large" href="${ARTIFACT_URL}">Download App</a>
+            <a class="button is-dark has-text-centered is-large" href="${APP_URL}">Download App</a>
           </div>
         </div>
       </div>
