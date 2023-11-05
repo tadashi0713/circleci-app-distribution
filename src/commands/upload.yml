@@ -35,8 +35,11 @@ steps:
         ARTIFACT_URL_NAME: PAGE_URL
       command: <<include(scripts/get_latest_artifact_url.sh)>>
   - run:
-      name: Install qrencode
-      command: <<include(scripts/install_qrencode.sh)>>
-  - run:
-      name: Show QR in CLI
-      command: <<include(scripts/show_qr_cli.sh)>>
+      name: Show page url
+      command: <<include(scripts/show_page_url.sh)>>
+  # - run:
+  #     name: Install qrencode
+  #     command: <<include(scripts/install_qrencode.sh)>>
+  # - run:
+  #     name: Show QR in CLI
+  #     command: <<include(scripts/show_qr_cli.sh)>>
