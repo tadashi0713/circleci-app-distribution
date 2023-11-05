@@ -38,7 +38,5 @@ steps:
       name: Install qrencode
       command: <<include(scripts/install_qrencode.sh)>>
   - run:
-      name: Generate & show QR Code
-      command: |
-        echo "You can now debug app\n$APP_URL\n\n"
-        qrencode -t ansi $APP_URL
+      name: Show QR in CLI
+      command: <<include(scripts/show_qr_cli.sh)>>
