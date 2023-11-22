@@ -37,8 +37,8 @@ jobs:
     resource_class: macos.m1.medium.gen1
     steps:
       - checkout
-      # - app-distribution/upload:
-      #     path: app/bitbar-ios-sample.ipa
+      - app-distribution/upload_ios:
+          path: app/bitbar-ios-sample.ipa
 
 workflows:
   test-deploy:

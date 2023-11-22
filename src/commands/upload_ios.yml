@@ -25,7 +25,7 @@ steps:
       command: <<include(scripts/get_latest_artifact_url.sh)>>
   - run:
       name: Generate page
-      command: <<include(scripts/generate_android_page.sh)>>
+      command: <<include(scripts/generate_ios_page.sh)>>
   - store_artifacts:
       path: page.html
   - run:
