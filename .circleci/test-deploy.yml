@@ -29,7 +29,7 @@ jobs:
       tag: 2023.10.1
     steps:
       - checkout
-      - app-distribution/upload:
+      - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
   test-ios-env:
     macos:
@@ -37,8 +37,8 @@ jobs:
     resource_class: macos.m1.medium.gen1
     steps:
       - checkout
-      - app-distribution/upload:
-          path: app/bitbar-ios-sample.ipa
+      # - app-distribution/upload:
+      #     path: app/bitbar-ios-sample.ipa
 
 workflows:
   test-deploy:
