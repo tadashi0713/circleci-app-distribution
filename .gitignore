@@ -2,3 +2,4 @@
 orb.yml
 .DS_Store
 vendor
+fastlane/report.xml

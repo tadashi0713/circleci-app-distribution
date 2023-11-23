@@ -5,6 +5,18 @@ GEM
       rexml
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    android_parser (2.5.1)
+      rexml (> 3.0)
+      rubyzip (>= 1.0, < 3.0)
+    app-info (2.8.5)
+      CFPropertyList (>= 2.3.4, < 3.1.0)
+      android_parser (~> 2.5.1)
+      google-protobuf (>= 3.19.4, < 3.23.0)
+      icns (~> 0.2.0)
+      image_size (>= 1.5, < 3.3)
+      ruby-macho (>= 1.4, < 4)
+      rubyzip (>= 1.2, < 3.0)
+      uuidtools (>= 2.1.5, < 2.3.0)
     artifactory (3.0.15)
     atomos (0.1.3)
     aws-eventstream (1.3.0)
@@ -105,6 +117,8 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
+    fastlane-plugin-app_info (0.8.2)
+      app-info (>= 2.8.5, < 3)
     gh_inspector (1.1.3)
     google-apis-androidpublisher_v3 (0.53.0)
       google-apis-core (>= 0.11.0, < 2.a)
@@ -137,6 +151,10 @@ GEM
       google-cloud-core (~> 1.6)
       googleauth (>= 0.16.2, < 2.a)
       mini_mime (~> 1.0)
+    google-protobuf (3.22.5-aarch64-linux)
+    google-protobuf (3.22.5-arm64-darwin)
+    google-protobuf (3.22.5-x86_64-darwin)
+    google-protobuf (3.22.5-x86_64-linux)
     googleauth (1.8.1)
       faraday (>= 0.17.3, < 3.a)
       jwt (>= 1.4, < 3.0)
@@ -147,6 +165,8 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     httpclient (2.8.3)
+    icns (0.2.0)
+    image_size (3.2.0)
     jmespath (1.6.2)
     json (2.6.3)
     jwt (2.7.1)
@@ -168,6 +188,7 @@ GEM
     retriable (3.1.2)
     rexml (3.2.6)
     rouge (2.0.7)
+    ruby-macho (3.0.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     security (0.1.3)
@@ -189,6 +210,7 @@ GEM
       tty-cursor (~> 0.7)
     uber (0.1.0)
     unicode-display_width (2.5.0)
+    uuidtools (2.2.0)
     webrick (1.8.1)
     word_wrap (1.0.0)
     xcodeproj (1.23.0)
@@ -211,6 +233,7 @@ PLATFORMS
 
 DEPENDENCIES
   fastlane
+  fastlane-plugin-app_info
 
 BUNDLED WITH
    2.3.8

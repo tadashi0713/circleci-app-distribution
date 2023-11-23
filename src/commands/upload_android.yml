@@ -15,7 +15,6 @@ parameters:
     default: $CIRCLE_TOKEN
     type: string
 steps:
-  - ruby/install-deps
   - store_artifacts:
       path: <<parameters.path>>
   - run:
@@ -24,6 +23,10 @@ steps:
         CIRCLE_TOKEN: <<parameters.circle_token>>
         ARTIFACT_URL_NAME: APP_URL
       command: <<include(scripts/get_latest_artifact_url.sh)>>
+  - ruby/install-deps
+  - run:
+      name: Generate page
+      command: bundle exec fastlane android generate_page
   - run:
       name: Generate page
       command: <<include(scripts/generate_android_page.sh)>>
