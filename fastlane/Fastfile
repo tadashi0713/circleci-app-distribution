@@ -8,11 +8,18 @@ end
 platform :android do
   lane :generate_page do
     app_info(file: "app/bitbar-sample-app.apk")
-    puts "#{lane_context[SharedValues::APP_INFO]}"
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/android.erb",
       destination: "android.html",
       placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :build_version => binary_info["BuildVersion"],
+        :identifier => binary_info["Identifier"],
+        :size => binary_info["Size"],
+        :min_sdk_version => binary_info["MinSDKVersion"],
+        :target_sdk_version => binary_info["TargetSDKVersion"],
         :build_url => ENV["CIRCLE_BUILD_URL"],
         :branch => ENV["CIRCLE_BRANCH"],
         :app_url => ENV["APP_URL"]
