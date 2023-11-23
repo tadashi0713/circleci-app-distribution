@@ -15,6 +15,7 @@ parameters:
     default: $CIRCLE_TOKEN
     type: string
 steps:
+  - ruby/install-deps
   - store_artifacts:
       path: <<parameters.path>>
   - run:
