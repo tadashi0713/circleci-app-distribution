@@ -27,11 +27,8 @@ steps:
   - run:
       name: Generate page
       command: bundle exec fastlane android generate_page
-  - run:
-      name: Generate page
-      command: <<include(scripts/generate_android_page.sh)>>
   - store_artifacts:
-      path: page.html
+      path: android.html
   - run:
       name: Get page url
       environment:
