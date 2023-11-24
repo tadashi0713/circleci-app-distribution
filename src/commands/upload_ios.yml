@@ -26,21 +26,18 @@ steps:
   - ruby/install-deps
   - run:
       name: Generate page
-      command: bundle exec fastlane ios generate_page
-  - run:
-      name: Generate page
-      command: <<include(scripts/generate_ios_page.sh)>>
+      command: bundle exec fastlane ios generate_plist
   - store_artifacts:
-      path: page.html
-  - run:
-      name: Get page url
-      environment:
-        CIRCLE_TOKEN: <<parameters.circle_token>>
-        ARTIFACT_URL_NAME: PAGE_URL
-      command: <<include(scripts/get_latest_artifact_url.sh)>>
-  - run:
-      name: Install qrencode
-      command: <<include(scripts/install_qrencode.sh)>>
-  - run:
-      name: Show QR in CLI
-      command: <<include(scripts/show_qr_cli.sh)>>
+      path: ios.plist
+  # - run:
+  #     name: Get page url
+  #     environment:
+  #       CIRCLE_TOKEN: <<parameters.circle_token>>
+  #       ARTIFACT_URL_NAME: PAGE_URL
+  #     command: <<include(scripts/get_latest_artifact_url.sh)>>
+  # - run:
+  #     name: Install qrencode
+  #     command: <<include(scripts/install_qrencode.sh)>>
+  # - run:
+  #     name: Show QR in CLI
+  #     command: <<include(scripts/show_qr_cli.sh)>>

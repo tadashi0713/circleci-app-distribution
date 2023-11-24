@@ -1,7 +1,17 @@
 platform :ios do
-  lane :generate_page do
+  lane :generate_plist do
     app_info(file: "app/bitbar-ios-sample.ipa")
-    puts "#{lane_context[SharedValues::APP_INFO]}"
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    erb(
+      template: "fastlane/ios_plist.erb",
+      destination: "ios.plist",
+      placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :identifier => binary_info["Identifier"],
+        :app_url => ENV["APP_URL"]
+      }
+    )
   end
 end
 
@@ -10,7 +20,7 @@ platform :android do
     app_info(file: "app/bitbar-sample-app.apk")
     binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
-      template: "fastlane/android.erb",
+      template: "fastlane/android_page.erb",
       destination: "android.html",
       placeholders: {
         :name => binary_info["Name"],
