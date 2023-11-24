@@ -13,6 +13,24 @@ platform :ios do
       }
     )
   end
+
+  lane :generate_page do
+    app_info(file: "app/bitbar-ios-sample.ipa")
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    erb(
+      template: "fastlane/ios_plist.erb",
+      destination: "ios.plist",
+      placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :build_version => binary_info["BuildVersion"],
+        :identifier => binary_info["Identifier"],
+        :build_url => ENV["CIRCLE_BUILD_URL"],
+        :branch => ENV["CIRCLE_BRANCH"],
+        :plist_url => ENV["PLIST_URL"]
+      }
+    )
+  end
 end
 
 platform :android do
@@ -27,9 +45,6 @@ platform :android do
         :release_version => binary_info["ReleaseVersion"],
         :build_version => binary_info["BuildVersion"],
         :identifier => binary_info["Identifier"],
-        :size => binary_info["Size"],
-        :min_sdk_version => binary_info["MinSDKVersion"],
-        :target_sdk_version => binary_info["TargetSDKVersion"],
         :build_url => ENV["CIRCLE_BUILD_URL"],
         :branch => ENV["CIRCLE_BRANCH"],
         :app_url => ENV["APP_URL"]
