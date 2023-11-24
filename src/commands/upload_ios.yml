@@ -38,6 +38,8 @@ steps:
   - run:
       name: Generate page
       command: bundle exec fastlane ios generate_page
+  - store_artifacts:
+      path: ios.html
   # - run:
   #     name: Install qrencode
   #     command: <<include(scripts/install_qrencode.sh)>>

@@ -18,8 +18,8 @@ platform :ios do
     app_info(file: "app/bitbar-ios-sample.ipa")
     binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
-      template: "fastlane/ios_plist.erb",
-      destination: "ios.plist",
+      template: "fastlane/ios_page.erb",
+      destination: "ios.html",
       placeholders: {
         :name => binary_info["Name"],
         :release_version => binary_info["ReleaseVersion"],
