@@ -23,11 +23,12 @@ steps:
         CIRCLE_TOKEN: <<parameters.circle_token>>
         ARTIFACT_URL_NAME: APP_URL
       command: <<include(scripts/get_latest_artifact_url.sh)>>
+  - ruby/install-deps
   - run:
       name: Generate page
-      command: <<include(scripts/generate_android_page.sh)>>
+      command: bundle exec fastlane android generate_page
   - store_artifacts:
-      path: page.html
+      path: android.html
   - run:
       name: Get page url
       environment:

@@ -1,6 +1,3 @@
-#!/bin/bash
-
-cat > page.html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>
@@ -39,17 +36,33 @@ cat > page.html <<- _EOF_
               <tr>
                 <th>Build URL</th>
                 <td>
-                  <a href="${CIRCLE_BUILD_URL}">$CIRCLE_BUILD_URL</a>
+                  <a href="<%= build_url %>"><%= build_url %></a>
                 </td>
               </tr>
               <tr>
                 <th>Branch</th>
-                <td>$CIRCLE_BRANCH</td>
+                <td><%= branch %></td>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <td><%= name %></td>
+              </tr>
+              <tr>
+                <th>ReleaseVersion</th>
+                <td><%= release_version %></td>
+              </tr>
+              <tr>
+                <th>BuildVersion</th>
+                <td><%= build_version %></td>
+              </tr>
+              <tr>
+                <th>Identifier</th>
+                <td><%= identifier %></td>
               </tr>
             </tbody>
           </table>
           <div class="has-text-centered">
-            <a class="button is-dark has-text-centered is-large" href="${APP_URL}">Download App</a>
+            <a class="button is-dark has-text-centered is-large" href="<%= plist_url %>">Install App</a>
           </div>
         </div>
       </div>
@@ -57,4 +70,3 @@ cat > page.html <<- _EOF_
   </section>
   </body>
 </html>
-_EOF_

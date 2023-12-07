@@ -1,0 +1,54 @@
+platform :ios do
+  lane :generate_plist do
+    app_info(file: "app/bitbar-ios-sample.ipa")
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    erb(
+      template: "fastlane/ios_plist.erb",
+      destination: "ios.plist",
+      placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :identifier => binary_info["Identifier"],
+        :app_url => ENV["APP_URL"]
+      }
+    )
+  end
+
+  lane :generate_page do
+    app_info(file: "app/bitbar-ios-sample.ipa")
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    erb(
+      template: "fastlane/ios_page.erb",
+      destination: "ios.html",
+      placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :build_version => binary_info["BuildVersion"],
+        :identifier => binary_info["Identifier"],
+        :build_url => ENV["CIRCLE_BUILD_URL"],
+        :branch => ENV["CIRCLE_BRANCH"],
+        :plist_url => ENV["PLIST_URL"]
+      }
+    )
+  end
+end
+
+platform :android do
+  lane :generate_page do
+    app_info(file: "app/bitbar-sample-app.apk")
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    erb(
+      template: "fastlane/android_page.erb",
+      destination: "android.html",
+      placeholders: {
+        :name => binary_info["Name"],
+        :release_version => binary_info["ReleaseVersion"],
+        :build_version => binary_info["BuildVersion"],
+        :identifier => binary_info["Identifier"],
+        :build_url => ENV["CIRCLE_BUILD_URL"],
+        :branch => ENV["CIRCLE_BRANCH"],
+        :app_url => ENV["APP_URL"]
+      }
+    )
+  end
+end
