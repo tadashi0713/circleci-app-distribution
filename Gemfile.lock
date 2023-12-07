@@ -36,6 +36,7 @@ GEM
     aws-sigv4 (1.7.0)
       aws-eventstream (~> 1, >= 1.0.2)
     babosa (1.0.4)
+    chunky_png (1.4.0)
     claide (1.1.0)
     colored (1.2)
     colored2 (3.1.2)
@@ -188,6 +189,10 @@ GEM
     retriable (3.1.2)
     rexml (3.2.6)
     rouge (2.0.7)
+    rqrcode (2.2.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     ruby-macho (3.0.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -234,6 +239,7 @@ PLATFORMS
 DEPENDENCIES
   fastlane
   fastlane-plugin-app_info
+  rqrcode
 
 BUNDLED WITH
    2.3.8

@@ -1,3 +1,5 @@
+require "rqrcode"
+
 platform :ios do
   lane :generate_plist do
     app_info(file: "app/bitbar-ios-sample.ipa")
@@ -35,7 +37,7 @@ end
 
 platform :android do
   lane :generate_page do
-    app_info(file: "app/bitbar-sample-app.apk")
+    app_info(file: ENV["APP_PATH"])
     binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/android_page.erb",
@@ -47,8 +49,13 @@ platform :android do
         :identifier => binary_info["Identifier"],
         :build_url => ENV["CIRCLE_BUILD_URL"],
         :branch => ENV["CIRCLE_BRANCH"],
-        :app_url => ENV["APP_URL"]
+        :app_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/#{ENV["APP_PATH"]}}"
       }
     )
+  end
+
+  lane :console_qr_code do
+    qrcode = RQRCode::QRCode.new("https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/android.html")
+    puts("\n" + qrcode.as_ansi)
   end
 end

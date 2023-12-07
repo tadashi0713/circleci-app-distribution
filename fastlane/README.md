@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios generate_plist
+
+```sh
+[bundle exec] fastlane ios generate_plist
+```
+
+
+
 ### ios generate_page
 
 ```sh
@@ -32,6 +40,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ```sh
 [bundle exec] fastlane android generate_page
+```
+
+
+
+### android console_qr_code
+
+```sh
+[bundle exec] fastlane android console_qr_code
 ```
 
 
