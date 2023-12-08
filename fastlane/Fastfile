@@ -1,6 +1,6 @@
 platform :ios do
   lane :generate_plist do
-    app_info(file: "app/bitbar-ios-sample.ipa")
+    app_info(file: ENV["APP_PATH"])
     binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/ios_plist.erb",
@@ -15,7 +15,7 @@ platform :ios do
   end
 
   lane :generate_page do
-    app_info(file: "app/bitbar-ios-sample.ipa")
+    app_info(file: ENV["APP_PATH"])
     binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/ios_page.erb",
@@ -30,6 +30,12 @@ platform :ios do
         :plist_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/ios.plist"
       }
     )
+  end
+
+  lane :generate_qr_code do
+    url = "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/ios.html"
+    code = qr_code(contents: url)
+    FileUtils.cp(code['QR_CODE_PNG_PATH'], './qr_code.png')
   end
 end
 

@@ -22,3 +22,8 @@ steps:
       command: bundle exec fastlane ios generate_page
   - store_artifacts:
       path: ios.html
+  - run:
+      name: Console QR Code
+      command: bundle exec fastlane ios generate_qr_code
+  - store_artifacts:
+      path: fastlane/qr_code.png
