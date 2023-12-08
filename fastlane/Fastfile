@@ -57,9 +57,8 @@ platform :android do
   lane :console_qr_code do
     url = "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/android.html"
     qrcode = RQRCode::QRCode.new(url)
-    puts("\n\nYou can now install and debug app via CircleCI App Distribution!\n\n#{url}\n\n\n" + qrcode.as_ansi(
-      quiet_zone_size: 2,
-      fill_character: '  '
+    puts("\n\nYou can now install and debug app via CircleCI App Distribution!\n\n#{url}\n\n" + qrcode.as_ansi(
+      fill_character: ' '
     ))
   end
 end
