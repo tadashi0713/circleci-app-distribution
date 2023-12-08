@@ -6,43 +6,19 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
-  circle_token:
-    description: >
-      CircleCI token for fetching flaky tests via API.
-      If not specified, CIRCLE_TOKEN environment variable will be used.
-      Please refer to this document how to generate it.
-      https://circleci.com/docs/managing-api-tokens (requires a v2 token)
-    default: $CIRCLE_TOKEN
-    type: string
 steps:
   - store_artifacts:
       path: <<parameters.path>>
-  - run:
-      name: Get app url
-      environment:
-        CIRCLE_TOKEN: <<parameters.circle_token>>
-        ARTIFACT_URL_NAME: APP_URL
-      command: <<include(scripts/get_latest_artifact_url.sh)>>
   - ruby/install-deps
   - run:
       name: Generate page
+      environment:
+        APP_PATH: <<parameters.path>>
       command: bundle exec fastlane ios generate_plist
   - store_artifacts:
       path: ios.plist
-  - run:
-      name: Get page url
-      environment:
-        CIRCLE_TOKEN: <<parameters.circle_token>>
-        ARTIFACT_URL_NAME: PLIST_URL
-      command: <<include(scripts/get_latest_artifact_url.sh)>>
   - run:
       name: Generate page
       command: bundle exec fastlane ios generate_page
   - store_artifacts:
       path: ios.html
-  # - run:
-  #     name: Install qrencode
-  #     command: <<include(scripts/install_qrencode.sh)>>
-  # - run:
-  #     name: Show QR in CLI
-  #     command: <<include(scripts/show_qr_cli.sh)>>
