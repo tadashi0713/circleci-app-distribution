@@ -19,4 +19,6 @@ steps:
       path: android.html
   - run:
       name: Console QR Code
-      command: bundle exec fastlane android console_qr_code
+      command: bundle exec fastlane android generate_qr_code
+  - store_artifacts:
+      path: fastlane/qr_code.png

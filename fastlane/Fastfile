@@ -1,5 +1,3 @@
-require "rqrcode"
-
 platform :ios do
   lane :generate_plist do
     app_info(file: "app/bitbar-ios-sample.ipa")
@@ -54,11 +52,9 @@ platform :android do
     )
   end
 
-  lane :console_qr_code do
+  lane :generate_qr_code do
     url = "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/android.html"
-    qrcode = RQRCode::QRCode.new(url)
-    puts("\n\nYou can now install and debug app via CircleCI App Distribution!\n\n#{url}\n\n" + qrcode.as_ansi(
-      fill_character: ' '
-    ))
+    code = qr_code(contents: url)
+    FileUtils.cp(code['QR_CODE_PNG_PATH'], './qr_code.png')
   end
 end

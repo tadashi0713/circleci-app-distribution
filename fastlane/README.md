@@ -44,10 +44,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### android console_qr_code
+### android generate_qr_code
 
 ```sh
-[bundle exec] fastlane android console_qr_code
+[bundle exec] fastlane android generate_qr_code
 ```
 
 
