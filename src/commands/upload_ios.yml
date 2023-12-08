@@ -11,7 +11,7 @@ steps:
       path: <<parameters.path>>
   - ruby/install-deps
   - run:
-      name: Generate page
+      name: Generate plist
       environment:
         APP_PATH: <<parameters.path>>
       command: bundle exec fastlane ios generate_plist
@@ -19,6 +19,8 @@ steps:
       path: ios.plist
   - run:
       name: Generate page
+      environment:
+        APP_PATH: <<parameters.path>>
       command: bundle exec fastlane ios generate_page
   - store_artifacts:
       path: ios.html
