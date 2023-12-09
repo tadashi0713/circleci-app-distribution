@@ -6,7 +6,7 @@ parameters:
     description: "Path of your app binary"
   release_note:
     type: string
-    description: "This will be shown in each distribution site" 
+    description: "This will be shown in each distribution site"
     default: ""
 steps:
   - store_artifacts:
