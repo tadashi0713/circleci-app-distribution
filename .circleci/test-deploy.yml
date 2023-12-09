@@ -31,6 +31,7 @@ jobs:
       - checkout
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
+          release_note: "Android"
   test-ios-env:
     macos:
       xcode: 14.3.1
@@ -39,6 +40,7 @@ jobs:
       - checkout
       - app-distribution/upload_ios:
           path: app/bitbar-ios-sample.ipa
+          release_note: "iOS"
 
 workflows:
   test-deploy:

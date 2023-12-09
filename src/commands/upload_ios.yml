@@ -1,11 +1,13 @@
 description: >
-  This command echos "Hello World" using file inclusion.
-# What will this command do?
-# Descriptions should be short, simple, and clear.
+  Distribute an iOS app by uploading the binary(ipa)
 parameters:
   path:
     type: string
     description: "Path of your app binary"
+  release_note:
+    type: string
+    description: "This will be shown in each distribution site" 
+    default: ""
 steps:
   - store_artifacts:
       path: <<parameters.path>>
@@ -21,6 +23,7 @@ steps:
       name: Generate page
       environment:
         APP_PATH: <<parameters.path>>
+        RELEASE_NOTE: <<parameters.release_note>>
       command: bundle exec fastlane ios generate_page
   - store_artifacts:
       path: ios.html

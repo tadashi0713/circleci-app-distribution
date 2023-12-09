@@ -27,6 +27,7 @@ platform :ios do
         :identifier => binary_info["Identifier"],
         :build_url => ENV["CIRCLE_BUILD_URL"],
         :branch => ENV["CIRCLE_BRANCH"],
+        :release_note => ENV["RELEASE_NOTE"],
         :plist_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/ios.plist"
       }
     )
@@ -53,6 +54,7 @@ platform :android do
         :identifier => binary_info["Identifier"],
         :build_url => ENV["CIRCLE_BUILD_URL"],
         :branch => ENV["CIRCLE_BRANCH"],
+        :release_note => ENV["RELEASE_NOTE"],
         :app_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/#{ENV["APP_PATH"]}"
       }
     )
