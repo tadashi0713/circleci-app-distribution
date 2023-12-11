@@ -42,8 +42,8 @@ end
 
 platform :android do
   lane :generate_page do
-    # app_info(file: ENV["APP_PATH"])
-    # binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    app_info(file: ENV["APP_PATH"])
+    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/android_page.erb",
       destination: "android.html",
