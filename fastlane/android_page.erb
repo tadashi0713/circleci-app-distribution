@@ -21,58 +21,79 @@
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
-  <section class="section">
-    <div class="container">
-      <div class="columns is-mobile">
-        <div class="column">
-          <h1 class="title has-text-centered">
-            CircleCI App Distribution
-          </h1>
-          <table class="table is-fullwidth">
-            <tbody>
-              <tr>
-                <th>Build URL</th>
-                <td>
-                  <a href="<%= build_url %>"><%= build_num %></a>
-                </td>
-              </tr>
-              <tr>
-                <th>Branch</th>
-                <td><%= branch %></td>
-              </tr>
-              <tr>
-                <th>Name</th>
-                <td><%= name %></td>
-              </tr>
-              <tr>
-                <th>ReleaseVersion</th>
-                <td><%= release_version %></td>
-              </tr>
-              <tr>
-                <th>BuildVersion</th>
-                <td><%= build_version %></td>
-              </tr>
-              <tr>
-                <th>Identifier</th>
-                <td><%= identifier %></td>
-              </tr>
-              <tr>
-                <th>Release Note</th>
-                <td><%= release_note %></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="has-text-centered">
-            <a class="button has-text-centered is-dark is-large" href="<%= app_url %>">
-              <span class="icon">
-                <i class="fas fa-download"></i>
-              </span>
-              <span>Install App</span>
-            </a>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-mobile">
+          <div class="column">
+            <h1 class="title has-text-centered">
+              CircleCI App Distribution
+            </h1>
+            <table class="table is-fullwidth">
+              <tbody>
+                <tr>
+                  <th>Build URL</th>
+                  <td>
+                    <a href="<%= build_url %>"><%= build_num %></a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Branch</th>
+                  <td><%= branch %></td>
+                </tr>
+                <tr>
+                  <th>Name</th>
+                  <td><%= name %></td>
+                </tr>
+                <tr>
+                  <th>ReleaseVersion</th>
+                  <td><%= release_version %></td>
+                </tr>
+                <tr>
+                  <th>BuildVersion</th>
+                  <td><%= build_version %></td>
+                </tr>
+                <tr>
+                  <th>Identifier</th>
+                  <td><%= identifier %></td>
+                </tr>
+                <tr>
+                  <th>Release Note</th>
+                  <td><%= release_note %></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="button is-dark is-large" href="<%= app_url %>">
+                  <span class="icon">
+                    <i class="fas fa-download"></i>
+                  </span>
+                  <span>Install App</span>
+                </a>
+              </p>
+              <p class="control">
+                <button class="button is-large" onclick="copyToClipboard()">
+                  <span class="icon">
+                    <i class="fas fa-copy"></i>
+                  </span>
+                  <span>Copy Link to Clipboard</span>
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <script>
+      function copyToClipboard(text) {
+        var inputc = document.body.appendChild(document.createElement("input"));
+        inputc.value = window.location.href;
+        inputc.focus();
+        inputc.select();
+        document.execCommand('copy');
+        inputc.parentNode.removeChild(inputc);
+        alert("URL Copied.");
+      }
+    </script>
   </body>
 </html>
