@@ -23,48 +23,50 @@
   <body>
     <section class="section">
       <div class="container">
-        <div class="columns is-mobile">
+        <div class="columns">
           <div class="column">
             <h1 class="title has-text-centered">
               CircleCI App Distribution
             </h1>
-            <table class="table is-fullwidth">
-              <tbody>
-                <tr>
-                  <th>Build URL</th>
-                  <td>
-                    <a href="<%= build_url %>"><%= build_num %></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Branch</th>
-                  <td><%= branch %></td>
-                </tr>
-                <tr>
-                  <th>Name</th>
-                  <td><%= name %></td>
-                </tr>
-                <tr>
-                  <th>ReleaseVersion</th>
-                  <td><%= release_version %></td>
-                </tr>
-                <tr>
-                  <th>BuildVersion</th>
-                  <td><%= build_version %></td>
-                </tr>
-                <tr>
-                  <th>Identifier</th>
-                  <td><%= identifier %></td>
-                </tr>
-                <tr>
-                  <th>Release Note</th>
-                  <td><%= release_note %></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="field is-grouped">
+            <div class="table-container">
+              <table class="table is-fullwidth">
+                <tbody>
+                  <tr>
+                    <th>Build URL</th>
+                    <td>
+                      <a href="<%= build_url %>"><%= build_num %></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Branch</th>
+                    <td><%= branch %></td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td><%= name %></td>
+                  </tr>
+                  <tr>
+                    <th>ReleaseVersion</th>
+                    <td><%= release_version %></td>
+                  </tr>
+                  <tr>
+                    <th>BuildVersion</th>
+                    <td><%= build_version %></td>
+                  </tr>
+                  <tr>
+                    <th>Identifier</th>
+                    <td><%= identifier %></td>
+                  </tr>
+                  <tr>
+                    <th>Release Note</th>
+                    <td><%= release_note %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                <a class="button is-dark is-large" href="<%= app_url %>">
+                <a class="button is-dark" href="<%= app_url %>">
                   <span class="icon">
                     <i class="fas fa-download"></i>
                   </span>
@@ -72,7 +74,7 @@
                 </a>
               </p>
               <p class="control">
-                <button class="button is-large" onclick="copyToClipboard()">
+                <button class="button" onclick="copyToClipboard()">
                   <span class="icon">
                     <i class="fas fa-copy"></i>
                   </span>
