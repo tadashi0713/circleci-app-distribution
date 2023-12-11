@@ -42,20 +42,28 @@ end
 
 platform :android do
   lane :generate_page do
-    app_info(file: ENV["APP_PATH"])
-    binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
+    # app_info(file: ENV["APP_PATH"])
+    # binary_info = JSON.parse(lane_context[SharedValues::APP_INFO])
     erb(
       template: "fastlane/android_page.erb",
       destination: "android.html",
       placeholders: {
-        :name => binary_info["Name"],
-        :release_version => binary_info["ReleaseVersion"],
-        :build_version => binary_info["BuildVersion"],
-        :identifier => binary_info["Identifier"],
-        :build_url => ENV["CIRCLE_BUILD_URL"],
-        :branch => ENV["CIRCLE_BRANCH"],
-        :release_note => ENV["RELEASE_NOTE"],
-        :app_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/#{ENV["APP_PATH"]}"
+        # :name => binary_info["Name"],
+        # :release_version => binary_info["ReleaseVersion"],
+        # :build_version => binary_info["BuildVersion"],
+        # :identifier => binary_info["Identifier"],
+        # :build_url => ENV["CIRCLE_BUILD_URL"],
+        # :branch => ENV["CIRCLE_BRANCH"],
+        # :release_note => ENV["RELEASE_NOTE"],
+        # :app_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/#{ENV["APP_PATH"]}"
+        :name => "BitbarIOSSample",
+        :release_version => "1.1.1",
+        :build_version => "110",
+        :identifier => "com.bitbar.testdroid.BitbarIOSSample",
+        :build_url => "https://circleci.com/gh/tadashi0713/circleci-app-distribution/2093",
+        :branch => "main",
+        :release_note => "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+        :app_url => "https://output.circle-artifacts.com/output/job/7e9398e9-3682-4ba1-91ad-3b0ab85e520d/artifacts/0/ios.plist"
       }
     )
   end

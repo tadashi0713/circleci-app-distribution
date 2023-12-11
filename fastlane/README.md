@@ -31,6 +31,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ios generate_qr_code
+
+```sh
+[bundle exec] fastlane ios generate_qr_code
+```
+
+
+
 ----
 
 
