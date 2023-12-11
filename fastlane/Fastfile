@@ -53,6 +53,7 @@ platform :android do
         # :build_version => binary_info["BuildVersion"],
         # :identifier => binary_info["Identifier"],
         # :build_url => ENV["CIRCLE_BUILD_URL"],
+        # :build_num => ENV["CIRCLE_BUILD_NUM"],
         # :branch => ENV["CIRCLE_BRANCH"],
         # :release_note => ENV["RELEASE_NOTE"],
         # :app_url => "https://output.circle-artifacts.com/output/job/#{ENV["CIRCLE_WORKFLOW_JOB_ID"]}/artifacts/0/#{ENV["APP_PATH"]}"
@@ -61,6 +62,7 @@ platform :android do
         :build_version => "110",
         :identifier => "com.bitbar.testdroid.BitbarIOSSample",
         :build_url => "https://circleci.com/gh/tadashi0713/circleci-app-distribution/2093",
+        :build_num => "2093",
         :branch => "main",
         :release_note => "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
         :app_url => "https://output.circle-artifacts.com/output/job/7e9398e9-3682-4ba1-91ad-3b0ab85e520d/artifacts/0/ios.plist"
