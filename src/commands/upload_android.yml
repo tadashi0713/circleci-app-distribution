@@ -13,6 +13,7 @@ steps:
       path: <<parameters.path>>
   - ruby/install-deps:
       app-dir: src
+      key: app-distribution-android
   - run:
       name: Generate page
       environment:
