@@ -13,7 +13,7 @@ steps:
       path: <<parameters.path>>
   - run:
       name: Install fastlane
-      command: sudo gem install fastlane
+      command: sudo gem install fastlane fastlane-plugin-app_info fastlane-plugin-qr_code
   - run:
       name: Generate plist
       environment:
