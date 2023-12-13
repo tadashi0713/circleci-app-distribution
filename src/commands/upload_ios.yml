@@ -11,7 +11,9 @@ parameters:
 steps:
   - store_artifacts:
       path: <<parameters.path>>
-  - ruby/install-deps
+  - ruby/install-deps:
+      path: app-distribution/vendor/bundle
+      key: app-distribution-ios
   - run:
       name: Generate plist
       environment:
