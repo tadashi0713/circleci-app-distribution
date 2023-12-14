@@ -19,4 +19,4 @@ steps:
       environment:
         APP_PATH: <<parameters.path>>
         RELEASE_NOTE: <<parameters.release_note>>
-      command: rake android
+      command: rake android -f src/scripts/Rakefile

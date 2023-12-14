@@ -19,5 +19,4 @@ steps:
       environment:
         APP_PATH: <<parameters.path>>
         RELEASE_NOTE: <<parameters.release_note>>
-      command: rake ios
-
+      command: rake ios -f src/scripts/Rakefile
