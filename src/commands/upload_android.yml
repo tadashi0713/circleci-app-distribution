@@ -15,7 +15,7 @@ steps:
       name: aapt
       APP_PATH: <<parameters.path>>
       command: |
-        VERSION_NAME=$(${ANDROID_HOME}/build-tools/33.0.1/aapt l -a  | grep android:versionName | sed -E -e 's/^.*Raw: "//' -e 's/".*$//')
+        VERSION_NAME=$(${ANDROID_HOME}/build-tools/33.0.1/aapt l -a ${APP_PATH} | grep android:versionName | sed -E -e 's/^.*Raw: "//' -e 's/".*$//')
         echo "Version: ${VERSION_NAME}"
   # - ruby/install-deps
   # - run:
