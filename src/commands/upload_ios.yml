@@ -11,24 +11,13 @@ parameters:
 steps:
   - store_artifacts:
       path: <<parameters.path>>
-  - ruby/install-deps
   - run:
-      name: Generate plist
-      environment:
-        APP_PATH: <<parameters.path>>
-      command: bundle exec fastlane ios generate_plist
-  - store_artifacts:
-      path: ios.plist
+      name: Install Gems
+      command: gem install app-info
   - run:
       name: Generate page
       environment:
         APP_PATH: <<parameters.path>>
         RELEASE_NOTE: <<parameters.release_note>>
-      command: bundle exec fastlane ios generate_page
-  - store_artifacts:
-      path: ios.html
-  - run:
-      name: Console QR Code
-      command: bundle exec fastlane ios generate_qr_code
-  - store_artifacts:
-      path: fastlane/qr_code.png
+      command: rake ios
+

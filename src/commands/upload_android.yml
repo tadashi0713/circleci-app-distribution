@@ -12,22 +12,11 @@ steps:
   - store_artifacts:
       path: <<parameters.path>>
   - run:
-      name: aapt
-      APP_PATH: <<parameters.path>>
-      command: |
-        VERSION_NAME=$(${ANDROID_HOME}/build-tools/33.0.1/aapt l -a ${APP_PATH} | grep android:versionName | sed -E -e 's/^.*Raw: "//' -e 's/".*$//')
-        echo "Version: ${VERSION_NAME}"
-  # - ruby/install-deps
-  # - run:
-  #     name: Generate page
-  #     environment:
-  #       APP_PATH: <<parameters.path>>
-  #       RELEASE_NOTE: <<parameters.release_note>>
-  #     command: bundle exec fastlane android generate_page
-  # - store_artifacts:
-  #     path: android.html
-  # - run:
-  #     name: Console QR Code
-  #     command: bundle exec fastlane android generate_qr_code
-  # - store_artifacts:
-  #     path: fastlane/qr_code.png
+      name: Install Gems
+      command: gem install app-info
+  - run:
+      name: Generate page
+      environment:
+        APP_PATH: <<parameters.path>>
+        RELEASE_NOTE: <<parameters.release_note>>
+      command: rake android
