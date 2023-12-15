@@ -12,11 +12,13 @@ steps:
   - store_artifacts:
       path: <<parameters.path>>
   - run:
-      name: Install Gems
-      command: gem install app-info
-  - run:
       name: Generate page
       environment:
         APP_PATH: <<parameters.path>>
-        RELEASE_NOTE: <<parameters.release_note>>
-      command: rake ios -f src/scripts/Rakefile
+      command: |
+        PLIST=$(unzip -p ${APP_PATH} Payload/*.app/Info.plist | plutil -convert json -o - -- -)
+        SHORT_VERSION=$(echo ${PLIST} | jq -r .CFBundleShortVersionString)
+        echo "CFBundleShortVersionString: ${SHORT_VERSION}"
+
+        BUNDLE_VERSION=$(echo ${APP_PATH} | jq -r .CFBundleVersion | sed -E -e 's/^.*\.//')
+        echo "CFBundleVersion: ${BUNDLE_VERSION}"
