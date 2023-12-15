@@ -17,5 +17,8 @@ steps:
         APP_PATH: <<parameters.path>>
       command: |
         gem install ipa_analyzer
-        ipa_analyzer -i $APP_PATH -p --info-plist --prov | jq -r '.info_plist | .content | .CFBundleShortVersionString'
-        ipa_analyzer -i $APP_PATH -p --info-plist --prov | jq -r '.info_plist | .content | .CFBundleVersion'
+        APP_DATA=$(ipa_analyzer -i $APP_PATH -p --info-plist --prov)
+        VERSION_NAME=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleShortVersionString')
+        echo $VERSION_NAME
+        VERSION_CODE=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleVersion')
+        echo $VERSION_CODE
