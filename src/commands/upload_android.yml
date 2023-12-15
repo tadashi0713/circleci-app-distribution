@@ -4,19 +4,21 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
-  release_note:
+  build-tools-version:
     type: string
-    description: "This will be shown in each distribution site"
-    default: ""
+    description: Version of Android SDK Build Tools
+    default: 30.0.2
 steps:
   - store_artifacts:
       path: <<parameters.path>>
   - run:
-      name: Install Gems
-      command: gem install app-info
-  - run:
-      name: Generate page
+      name: Generate Page
       environment:
         APP_PATH: <<parameters.path>>
-        RELEASE_NOTE: <<parameters.release_note>>
-      command: rake android -f src/scripts/Rakefile
+        BUILD_TOOLS_VERSION: <<parameters.build-tools-version>>
+      command: |
+        VERSION_NAME=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt l -a ${APP_PATH} | grep android:versionName | sed -E -e 's/^.*Raw: "//' -e 's/".*$//')
+        echo "Version: ${VERSION_NAME}"
+
+        VERSION_CODE=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt l -a ${APP_PATH} | grep android:versionCode | sed -E -e 's/^.*)//')
+        echo "Version Code: $(printf '%d' ${VERSION_CODE})"
