@@ -16,9 +16,6 @@ steps:
       environment:
         APP_PATH: <<parameters.path>>
       command: |
-        PLIST=$(unzip -p ${APP_PATH} Payload/*.app/Info.plist | plutil -convert json -o - -- -)
-        SHORT_VERSION=$(echo ${PLIST} | jq -r .CFBundleShortVersionString)
-        echo "CFBundleShortVersionString: ${SHORT_VERSION}"
-
-        BUNDLE_VERSION=$(echo ${APP_PATH} | jq -r .CFBundleVersion | sed -E -e 's/^.*\.//')
-        echo "CFBundleVersion: ${BUNDLE_VERSION}"
+        gem install ipa_analyzer
+        ipa_analyzer -i sample.ipa -p --info-plist --prov | jq -r '.info_plist | .content | .CFBundleShortVersionString'
+        ipa_analyzer -i sample.ipa -p --info-plist --prov | jq -r '.info_plist | .content | .CFBundleVersion'
