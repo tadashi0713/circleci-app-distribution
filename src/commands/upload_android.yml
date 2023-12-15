@@ -4,7 +4,7 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
-  build-tools-version:
+  build_tools_version:
     type: string
     description: Version of Android SDK Build Tools
     default: 30.0.2
@@ -15,7 +15,7 @@ steps:
       name: Generate Page
       environment:
         APP_PATH: <<parameters.path>>
-        BUILD_TOOLS_VERSION: <<parameters.build-tools-version>>
+        BUILD_TOOLS_VERSION: <<parameters.build_tools_version>>
       command: |
         VERSION_NAME=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt l -a ${APP_PATH} | grep android:versionName | sed -E -e 's/^.*Raw: "//' -e 's/".*$//')
         echo "Version: ${VERSION_NAME}"
