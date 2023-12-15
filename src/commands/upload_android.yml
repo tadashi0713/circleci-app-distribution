@@ -4,9 +4,13 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
+  release_note:
+    type: string
+    description: "This will be shown in each distribution site"
+    default: ""
   build_tools_version:
     type: string
-    description: Version of Android SDK Build Tools
+    description: Version of Android SDK Build Tools, you can see available versions in $ANDROID_HOME/build-tools/
     default: 30.0.2
 steps:
   - store_artifacts:
