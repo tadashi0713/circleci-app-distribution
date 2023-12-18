@@ -22,3 +22,7 @@ steps:
         echo $VERSION_NAME
         VERSION_CODE=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleVersion')
         echo $VERSION_CODE
+        APP_NAME=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleName')
+        echo $APP_NAME
+        IDENTIFIER=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleIdentifier')
+        echo $APP_NAME
