@@ -32,7 +32,6 @@ jobs:
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
           release_note: "Android Machine"
-          build_tools_version: 30.0.3
 
   test-android-docker-env:
     executor:

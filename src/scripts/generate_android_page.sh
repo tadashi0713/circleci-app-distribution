@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Get latest build-tools version
+BUILD_TOOLS_DIR=$(ls -td "${ANDROID_HOME}"/build-tools/*/ | head -1)
+
 # Fetch App Data
-APP_DATA=$("${ANDROID_HOME}"/build-tools/"${BUILD_TOOLS_VERSION}"/aapt2 dump badging "${APP_PATH:-default}")
+APP_DATA=$("${BUILD_TOOLS_DIR%/}"/aapt2 dump badging "${APP_PATH:-default}")
 
 # Convert app data to Env
 APP_NAME=$(echo "${APP_DATA}" | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")

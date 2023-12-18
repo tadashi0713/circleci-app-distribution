@@ -8,10 +8,6 @@ parameters:
     type: string
     description: "This will be shown in each distribution site"
     default: ""
-  build_tools_version:
-    type: string
-    description: Version of Android SDK Build Tools, you can see available versions in $ANDROID_HOME/build-tools/
-    default: 33.0.2
 steps:
   - run:
       name: Install packages needed for this Orb
@@ -23,7 +19,6 @@ steps:
       environment:
         APP_PATH: <<parameters.path>>
         RELEASE_NOTE: <<parameters.release_note>>
-        BUILD_TOOLS_VERSION: <<parameters.build_tools_version>>
       command: <<include(scripts/generate_android_page.sh)>>
   - store_artifacts:
       path: index.html
