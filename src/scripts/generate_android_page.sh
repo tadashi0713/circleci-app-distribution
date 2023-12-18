@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_DATA=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt2 dump badging ${APP_PATH})
+APP_DATA=$("${ANDROID_HOME}"/build-tools/"${BUILD_TOOLS_VERSION}"/aapt2 dump badging "${APP_PATH}")
 
 # Convert app data to Env
 APP_NAME=$(echo "${APP_DATA}" | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
