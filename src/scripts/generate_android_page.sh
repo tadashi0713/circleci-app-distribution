@@ -3,10 +3,10 @@
 APP_DATA=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt2 dump badging ${APP_PATH})
 
 # Convert app data to Env
-APP_NAME=$(echo ${APP_DATA} | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
-RELEASE_VERSION=$(echo ${APP_DATA} | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
-BUILD_VERSION=$(echo ${APP_DATA} | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
-IDENTIFIER=$(echo ${APP_DATA} | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
+APP_NAME=$(echo "${APP_DATA}" | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
+RELEASE_VERSION=$(echo "${APP_DATA}" | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
+BUILD_VERSION=$(echo "${APP_DATA}" | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
+IDENTIFIER=$(echo "${APP_DATA}" | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
 APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}"
 
 cat > android.html <<- _EOF_
