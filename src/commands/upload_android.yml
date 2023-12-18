@@ -11,7 +11,7 @@ parameters:
   build_tools_version:
     type: string
     description: Version of Android SDK Build Tools, you can see available versions in $ANDROID_HOME/build-tools/
-    default: 30.0.3
+    default: 30.0.2
 steps:
   - run:
       name: Install packages needed for this Orb

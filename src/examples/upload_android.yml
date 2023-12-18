@@ -1,0 +1,10 @@
+description: >
+  Distribute an Android app by uploading the binary(aab, apk)
+usage:
+  version: 2.1
+  orbs:
+    <orb-name>: <namespace>/<orb-name>@1.2.3
+  workflows:
+    use-my-orb:
+      jobs:
+        - <orb-name>/<job-name>
