@@ -19,11 +19,8 @@ steps:
       name: Generate Page
       environment:
         APP_PATH: <<parameters.path>>
+        RELEASE_NOTE: <<parameters.release_note>>
         BUILD_TOOLS_VERSION: <<parameters.build_tools_version>>
-      command: |
-        APP_DATA=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt2 dump badging ${APP_PATH})
-
-        APP_NAME=$(echo ${APP_DATA} | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
-        RELEASE_VERSION=$(echo ${APP_DATA} | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
-        BUILD_VERSION=$(echo ${APP_DATA} | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
-        IDENTIFIER=$(echo ${APP_DATA} | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
+      command: <<include(scripts/generate_android_page.sh)>>
+  - store_artifacts:
+      path: android.html
