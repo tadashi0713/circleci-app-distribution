@@ -23,15 +23,26 @@ release-filters: &release-filters
 jobs:
   # Create jobs to test the commands of your orbs.
   # You may want to add additional validation steps to ensure the commands are working as expected.
-  test-android-env:
+  test-android-machine-env:
     executor:
       name: android/android-machine
-      tag: 2023.10.1
+      tag: 2023.11.1
     steps:
       - checkout
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
-          release_note: "Android"
+          release_note: "Android Machine"
+
+  test-android-docker-env:
+    executor:
+      name: android/android-docker
+      tag: 2023.12.1
+    steps:
+      - checkout
+      - app-distribution/upload_android:
+          path: app/bitbar-sample-app.apk
+          release_note: "Android Docker"
+
   test-ios-env:
     macos:
       xcode: 14.3.1
@@ -47,7 +58,9 @@ workflows:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-      - test-android-env:
+      - test-android-machine-env:
+          filters: *filters
+      - test-android-docker-env:
           filters: *filters
       - test-ios-env:
           filters: *filters
@@ -61,7 +74,8 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - test-android-env
+            - test-android-machine-env
+            - test-android-docker-env
             - test-ios-env
           context: orb-publishing
           filters: *release-filters
