@@ -1,17 +1,56 @@
 #!/bin/bash
 
 # Fetch App Data
-APP_DATA=$("${ANDROID_HOME}"/build-tools/"${BUILD_TOOLS_VERSION}"/aapt2 dump badging "${APP_PATH:-default}")
+gem install ipa_analyzer
+APP_DATA=$(ipa_analyzer -i "${APP_PATH:-default}" -p --info-plist --prov)
 
 # Convert app data to Env
-APP_NAME=$(echo "${APP_DATA}" | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
-RELEASE_VERSION=$(echo "${APP_DATA}" | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
-BUILD_VERSION=$(echo "${APP_DATA}" | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
-IDENTIFIER=$(echo "${APP_DATA}" | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
+APP_NAME=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleName')
+RELEASE_VERSION=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleShortVersionString')
+BUILD_VERSION=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleVersion')
+IDENTIFIER=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleIdentifier')
+
+# Generate Plist
 APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}"
 
+cat > ios.plist <<- _EOF_
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>items</key>
+  <array>
+    <dict>
+      <key>assets</key>
+      <array>
+        <dict>
+          <key>kind</key>
+          <string>software-package</string>
+          <key>url</key>
+          <string>${APP_URL}</string>
+        </dict>
+      </array>
+      <key>metadata</key>
+      <dict>
+        <key>bundle-identifier</key>
+        <string>${IDENTIFIER}</string>
+        <key>bundle-version</key>
+        <string>${RELEASE_VERSION}</string>
+        <key>kind</key>
+        <string>software</string>
+        <key>title</key>
+        <string>${APP_NAME}</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
+_EOF_
+
 # Generate page
-cat > android.html <<- _EOF_
+PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist"
+
+cat > ios.html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>
@@ -80,7 +119,7 @@ cat > android.html <<- _EOF_
             </div>
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                <a class="button is-dark" href="${APP_URL}">
+                <a class="button is-dark" href="itms-services://?action=download-manifest&amp;url=${PLIST_URL}">
                   <span class="icon">
                     <i class="fas fa-download"></i>
                   </span>

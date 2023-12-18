@@ -15,11 +15,9 @@ steps:
       name: Generate page
       environment:
         APP_PATH: <<parameters.path>>
-      command: |
-        gem install ipa_analyzer
-        APP_DATA=$(ipa_analyzer -i $APP_PATH -p --info-plist --prov)
-
-        APP_NAME=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleName')
-        RELEASE_VERSION=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleShortVersionString')
-        BUILD_VERSION=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleVersion')
-        IDENTIFIER=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleIdentifier')
+        RELEASE_NOTE: <<parameters.release_note>>
+      command: <<include(scripts/generate_ios_plist_and_page.sh)>>
+  - store_artifacts:
+      path: ios.plist
+  - store_artifacts:
+      path: ios.html
