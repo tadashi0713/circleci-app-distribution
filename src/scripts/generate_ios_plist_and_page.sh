@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Fetch App Data
-gem install ipa_analyzer
 APP_DATA=$(ipa_analyzer -i "${APP_PATH:-default}" -p --info-plist --prov)
 
 # Convert app data to Env

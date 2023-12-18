@@ -9,6 +9,9 @@ parameters:
     description: "This will be shown in each distribution site"
     default: ""
 steps:
+  - run:
+      name: Install packages needed for this Orb
+      command: <<include(scripts/install_packages.sh)>>
   - store_artifacts:
       path: <<parameters.path>>
   - run:
@@ -22,7 +25,7 @@ steps:
   - store_artifacts:
       path: index.html
   - run:
-      name: Generate QRCode
+      name: Generate QRCode(You can see QRCode in this step)
       command: <<include(scripts/generate_qrcode.sh)>>
   - store_artifacts:
       path: qrcode.png
