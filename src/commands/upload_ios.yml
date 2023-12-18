@@ -20,4 +20,9 @@ steps:
   - store_artifacts:
       path: ios.plist
   - store_artifacts:
-      path: ios.html
+      path: index.html
+  - run:
+      name: Generate QRCode
+      command: <<include(scripts/generate_qrcode.sh)>>
+  - store_artifacts:
+      path: qrcode.png

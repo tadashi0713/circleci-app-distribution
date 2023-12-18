@@ -23,4 +23,9 @@ steps:
         BUILD_TOOLS_VERSION: <<parameters.build_tools_version>>
       command: <<include(scripts/generate_android_page.sh)>>
   - store_artifacts:
-      path: android.html
+      path: index.html
+  - run:
+      name: Generate QRCode
+      command: <<include(scripts/generate_qrcode.sh)>>
+  - store_artifacts:
+      path: qrcode.png

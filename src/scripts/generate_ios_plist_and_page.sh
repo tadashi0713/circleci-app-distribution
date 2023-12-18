@@ -50,7 +50,7 @@ _EOF_
 # Generate page
 PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist"
 
-cat > ios.html <<- _EOF_
+cat > index.html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>

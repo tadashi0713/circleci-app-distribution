@@ -8,10 +8,11 @@ APP_NAME=$(echo "${APP_DATA}" | grep "application: label=" | sed -e "s/.*applica
 RELEASE_VERSION=$(echo "${APP_DATA}" | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
 BUILD_VERSION=$(echo "${APP_DATA}" | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
 IDENTIFIER=$(echo "${APP_DATA}" | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
-APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}"
 
 # Generate page
-cat > android.html <<- _EOF_
+APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}"
+
+cat > index.html <<- _EOF_
 <!DOCTYPE html>
 <html>
   <head>
