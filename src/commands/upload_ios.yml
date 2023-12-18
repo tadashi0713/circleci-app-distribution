@@ -18,11 +18,8 @@ steps:
       command: |
         gem install ipa_analyzer
         APP_DATA=$(ipa_analyzer -i $APP_PATH -p --info-plist --prov)
-        VERSION_NAME=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleShortVersionString')
-        echo $VERSION_NAME
-        VERSION_CODE=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleVersion')
-        echo $VERSION_CODE
+
         APP_NAME=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleName')
-        echo $APP_NAME
+        RELEASE_VERSION=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleShortVersionString')
+        BUILD_VERSION=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleVersion')
         IDENTIFIER=$(echo $APP_DATA | jq -r '.info_plist | .content | .CFBundleIdentifier')
-        echo $APP_NAME

@@ -22,14 +22,8 @@ steps:
         BUILD_TOOLS_VERSION: <<parameters.build_tools_version>>
       command: |
         APP_DATA=$(${ANDROID_HOME}/build-tools/${BUILD_TOOLS_VERSION}/aapt2 dump badging ${APP_PATH})
-        VERSION_NAME=$(echo ${APP_DATA} | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
-        echo "Version: ${VERSION_NAME}"
 
-        VERSION_CODE=$(echo ${APP_DATA} | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
-        echo "Version Code: $(printf '%d' ${VERSION_CODE})"
-
-        PACKAGE_NAME=$(echo ${APP_DATA} | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
-        echo "Package Name: ${PACKAGE_NAME}"
-
-        APPLICATION_LABEL=$(echo ${APP_DATA} | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
-        echo "Application Label: ${APPLICATION_LABEL}"
+        APP_NAME=$(echo ${APP_DATA} | grep "application: label=" | sed -e "s/.*application: label='//" -e "s/' .*//")
+        RELEASE_VERSION=$(echo ${APP_DATA} | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
+        BUILD_VERSION=$(echo ${APP_DATA} | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
+        IDENTIFIER=$(echo ${APP_DATA} | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
