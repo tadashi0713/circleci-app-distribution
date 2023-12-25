@@ -32,6 +32,8 @@ jobs:
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
           release_note: "Android Machine"
+      - app-distribution/notify_slack:
+          channel: test
 
   test-android-docker-env:
     executor:
@@ -42,6 +44,8 @@ jobs:
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
           release_note: "Android Docker"
+      - app-distribution/notify_slack:
+          channel: test
 
   test-ios-env:
     macos:
@@ -52,6 +56,8 @@ jobs:
       - app-distribution/upload_ios:
           path: app/bitbar-ios-sample.ipa
           release_note: "iOS"
+      - app-distribution/notify_slack:
+          channel: test
 
 workflows:
   test-deploy:

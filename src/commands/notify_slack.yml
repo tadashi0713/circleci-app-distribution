@@ -1,0 +1,34 @@
+description: >
+  Notify to Slack channel including QR Code
+
+  The environment variables SLACK_ACCESS_TOKEN, and SLACK_DEFAULT_CHANNEL must be set for this orb to work.
+
+  Please refer to this document how to generate SLACK_ACCESS_TOKEN: https://github.com/CircleCI-Public/slack-orb/wiki/Setup.
+parameters:
+  channel:
+    description: >
+      Select which channel in which to post to.
+      Channel name or ID will work.
+      You may include a comma separated list of channels if you wish to post to multiple channels at once.
+      Set the "SLACK_DEFAULT_CHANNEL" environment variable for the default channel.
+    default: $SLACK_DEFAULT_CHANNEL
+    type: string
+steps:
+  - slack/notify:
+      custom: |
+        {
+          "blocks": [
+            {
+              "type": "section",
+              "fields": [
+                {
+                  "type": "plain_text",
+                  "text": "*This is a text notification*",
+                  "emoji": true
+                }
+              ]
+            }
+          ]
+        }
+      event: always
+      channel: <<parameters.channel>>
