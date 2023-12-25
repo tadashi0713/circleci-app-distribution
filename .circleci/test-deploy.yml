@@ -66,10 +66,13 @@ workflows:
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - test-android-machine-env:
           filters: *filters
+          context: app-distribution
       - test-android-docker-env:
           filters: *filters
+          context: app-distribution
       - test-ios-env:
           filters: *filters
+          context: app-distribution
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
