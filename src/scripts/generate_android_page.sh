@@ -124,4 +124,4 @@ PAGE_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_I
 QR_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/qrcode.png"
 
 echo "export PAGE_URL=${PAGE_URL}" >> "$BASH_ENV"
-echo "export QR_URL="${QR_URL}" >> "$BASH_ENV"
+echo "export QR_URL=${QR_URL}" >> "$BASH_ENV"
