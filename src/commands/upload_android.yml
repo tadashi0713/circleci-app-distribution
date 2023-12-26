@@ -20,9 +20,11 @@ steps:
         APP_PATH: <<parameters.path>>
         RELEASE_NOTE: <<parameters.release_note>>
       command: <<include(scripts/generate_android_page.sh)>>
-  - run: |
-      echo $PAGE_URL
-      echo $QR_URL
+  - run:
+      name: echo
+      command: |
+        echo $PAGE_URL
+        echo $QR_URL
   - store_artifacts:
       path: index.html
   - run:
