@@ -5,10 +5,32 @@ template=$(cat << EOS
   "blocks": [
     {
       "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": ":warning: Flaky tests detected to *${PROJECT_SLUG}* project."
-      }
+      "fields": [
+        {
+          type: "mrkdwn",
+          text: "*Branch:* ${CIRCLE_BRANCH}"
+        },
+        {
+          type: "mrkdwn",
+          text: "*Name:* ${APP_NAME}"
+        },
+        {
+          type: "mrkdwn",
+          text: "*Identifier:* ${IDENTIFIER}"
+        },
+        {
+          type: "mrkdwn",
+          text: "*ReleaseVersion:* ${RELEASE_VERSION}"
+        },
+        {
+          type: "mrkdwn",
+          text: "*BuildVersion:* ${BUILD_VERSION}"
+        },
+        {
+          type: "mrkdwn",
+          text: "*Release Note:* ${RELEASE_NOTE}"
+        }
+      ]
     }
   ]
 }
