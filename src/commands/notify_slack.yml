@@ -72,45 +72,11 @@ parameters:
     default: .+
     type: string
 steps:
+  - run:
+      name: Generate Slack template
+      command: <<include(scripts/generate_slack_template.sh)>>
   - slack/notify:
-      custom: |
-        {
-          "blocks": [
-            {
-              "type": "section",
-              "fields": [
-                {
-                  type: "mrkdwn",
-                  text: "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*Branch:* ${CIRCLE_BRANCH}"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*Name:* ${APP_NAME}"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*Identifier:* ${IDENTIFIER}"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*ReleaseVersion:* ${RELEASE_VERSION}"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*BuildVersion:* ${BUILD_VERSION}"
-                },
-                {
-                  type: "mrkdwn",
-                  text: "*Release Note:* ${RELEASE_NOTE}"
-                },
-              ]
-            }
-          ]
-        }
+      template: APP_DISTRIBUTION_SLACK_TEMPLATE
       branch_pattern: <<parameters.branch_pattern>>
       channel: <<parameters.channel>>
       circleci_host: <<parameters.circleci_host>>
