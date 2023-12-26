@@ -119,9 +119,13 @@ cat > index.html <<- _EOF_
 </html>
 _EOF_
 
-# export Environment Variables
+# export Environment Variables for GitHub/Slack
 PAGE_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/index.html"
 QR_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/qrcode.png"
 
+echo "export APP_NAME=${APP_NAME}" >> "$BASH_ENV"
+echo "export RELEASE_VERSION=${RELEASE_VERSION}" >> "$BASH_ENV"
+echo "export BUILD_VERSION=${BUILD_VERSION}" >> "$BASH_ENV"
+echo "export IDENTIFIER=${IDENTIFIER}" >> "$BASH_ENV"
 echo "export PAGE_URL=${PAGE_URL}" >> "$BASH_ENV"
 echo "export QR_URL=${QR_URL}" >> "$BASH_ENV"

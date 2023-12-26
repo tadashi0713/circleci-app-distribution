@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PAGE_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/index.html"
-
 # Generate QRCode image
 qrencode -o qrcode.png "$PAGE_URL"
 
