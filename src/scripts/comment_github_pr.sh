@@ -19,6 +19,8 @@ else
   | Release Note | ${RELEASE_NOTE} |
   | Install URL | ${PAGE_URL} |
 
+  ```
   ${qr_code}
+  ```
   "
 fi
