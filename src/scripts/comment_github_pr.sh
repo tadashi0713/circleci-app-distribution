@@ -10,9 +10,11 @@ pr_response=$(gh api \
 if [ $(echo $pr_response | jq length) -eq 0 ]; then
   echo "No PR found to update"
 else
-  pr_number=$(echo $pr_response | jq -r ".[]._links.number")
+  pr_number=$(echo $pr_response | jq -r ".[].number")
 fi
 
-gh pr comment $pr_number --body "
+echo $pr_number
+
+gh pr comment $pr_number --edit-last --body "
 # CircleCI App Distribution
 "
