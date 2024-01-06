@@ -9,7 +9,24 @@ template=$(cat << EOS
 				"text": "${PLATFORM} app *${APP_NAME}* distributed!",
 				"type": "mrkdwn"
 			},
+      "accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Go to Distribution Page"
+				},
+				"style": "primary",
+				"url": "${PAGE_URL}"
+			}
 			"fields": [
+        {
+					"type": "mrkdwn",
+					"text": "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
+				},
+        {
+					"type": "mrkdwn",
+					"text": "*Branch:* ${CIRCLE_BRANCH}"
+				},
 				{
 					"type": "mrkdwn",
 					"text": "*ReleaseVersion:* ${RELEASE_VERSION}"
@@ -24,13 +41,8 @@ template=$(cat << EOS
 				},
         {
 					"type": "mrkdwn",
-					"text": "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
-				},
-        {
-          "type": "image",
-          "image_url": "${QR_URL}",
-          "alt_text": "QR Code"
-        }
+					"text": "*Release Note:* ${RELEASE_NOTE}"
+				}
 			]
 		}
   ]
