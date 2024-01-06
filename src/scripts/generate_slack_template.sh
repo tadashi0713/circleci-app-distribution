@@ -6,7 +6,7 @@ template=$(cat << EOS
 		{
 			"type": "section",
 			"text": {
-				"text": "${PLATFORM} app *${APP_NAME}* distributed from ${CIRCLE_PROJECT_REPONAME} project!",
+				"text": "*${APP_NAME}* distributed from *${CIRCLE_PROJECT_REPONAME}* project!",
 				"type": "mrkdwn"
 			},
       "accessory": {
@@ -26,6 +26,10 @@ template=$(cat << EOS
         {
 					"type": "mrkdwn",
 					"text": "*Branch:*\n${CIRCLE_BRANCH}"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Platform:*\n${PLATFORM}"
 				},
 				{
 					"type": "mrkdwn",
