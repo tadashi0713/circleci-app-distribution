@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pr_number=$(gh pr list --head github_pr --state open --json number --jq ".[].number")
+pr_number=$(gh pr list --head $CIRCLE_BRANCH --state open --json number --jq ".[].number")
 
 if [ $pr_number -eq "" ]; then
   echo "No PR found to update"
