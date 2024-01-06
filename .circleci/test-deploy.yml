@@ -31,7 +31,6 @@ jobs:
       - checkout
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
-          release_note: "Android Machine"
       - app-distribution/comment_github_pr
       - app-distribution/notify_slack:
           channel: test
@@ -44,7 +43,6 @@ jobs:
       - checkout
       - app-distribution/upload_android:
           path: app/bitbar-sample-app.apk
-          release_note: "Android Docker"
       - app-distribution/comment_github_pr
       - app-distribution/notify_slack:
           channel: test
@@ -57,7 +55,6 @@ jobs:
       - checkout
       - app-distribution/upload_ios:
           path: app/bitbar-ios-sample.ipa
-          release_note: "iOS"
       - app-distribution/comment_github_pr
       - app-distribution/notify_slack:
           channel: test

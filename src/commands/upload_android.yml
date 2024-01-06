@@ -4,10 +4,6 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
-  release_note:
-    type: string
-    description: "This will be shown in each distribution site"
-    default: ""
 steps:
   - run:
       name: Install packages needed for this Orb
@@ -18,7 +14,6 @@ steps:
       name: Generate Page
       environment:
         APP_PATH: <<parameters.path>>
-        RELEASE_NOTE: <<parameters.release_note>>
       command: <<include(scripts/generate_android_page.sh)>>
   - store_artifacts:
       path: index.html
