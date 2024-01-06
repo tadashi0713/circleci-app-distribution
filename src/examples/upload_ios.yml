@@ -16,6 +16,9 @@ usage:
       - run: bundle exec fastlane beta
       - app-distribution/upload_ios:
           path: CircleCIDemo.ipa
+      - app-distribution/comment_github_pr
+      - app-distribution/notify_slack:
+          channel: test
 
   workflows:
     ios-workflow:
