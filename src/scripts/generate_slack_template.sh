@@ -6,25 +6,25 @@ template=$(cat << EOS
 		{
 			"type": "section",
 			"text": {
-				"text": "A message *with some bold text* and _some italicized text_.",
+				"text": "${PLATFORM} app *${APP_NAME}* distributed!",
 				"type": "mrkdwn"
 			},
 			"fields": [
 				{
 					"type": "mrkdwn",
-					"text": "*Priority*"
+					"text": "*ReleaseVersion:* ${RELEASE_VERSION}"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*Type*"
+					"text": "*BuildVersion:* ${BUILD_VERSION}"
 				},
 				{
-					"type": "plain_text",
-					"text": "High"
+					"type": "mrkdwn",
+					"text": "*Identifier:* ${IDENTIFIER}"
 				},
-				{
-					"type": "plain_text",
-					"text": "String"
+        {
+					"type": "mrkdwn",
+					"text": "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
 				}
 			]
 		}
