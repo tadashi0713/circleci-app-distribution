@@ -18,6 +18,7 @@ else
   | Identifier | ${IDENTIFIER} |
   | Release Note | ${RELEASE_NOTE} |
   | Install URL | ${PAGE_URL} |
-  | QR Code | ${qr_code} |
+
+  ${qr_code}
   "
 fi
