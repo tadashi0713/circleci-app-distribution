@@ -17,31 +17,31 @@ template=$(cat << EOS
 				},
 				"style": "primary",
 				"url": "${PAGE_URL}"
-			}
+			},
 			"fields": [
         {
 					"type": "mrkdwn",
-					"text": "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
+					"text": "*Build URL:*\n<${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
 				},
         {
 					"type": "mrkdwn",
-					"text": "*Branch:* ${CIRCLE_BRANCH}"
+					"text": "*Branch:*\n${CIRCLE_BRANCH}"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*ReleaseVersion:* ${RELEASE_VERSION}"
+					"text": "*ReleaseVersion:*\n${RELEASE_VERSION}"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*BuildVersion:* ${BUILD_VERSION}"
+					"text": "*BuildVersion:*\n${BUILD_VERSION}"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*Identifier:* ${IDENTIFIER}"
+					"text": "*Identifier:*\n${IDENTIFIER}"
 				},
         {
 					"type": "mrkdwn",
-					"text": "*Release Note:* ${RELEASE_NOTE}"
+					"text": "*Release Note:*\n${RELEASE_NOTE}"
 				}
 			]
 		}
