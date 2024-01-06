@@ -6,6 +6,7 @@ if [ $(echo $pr_response | jq length) -eq 0 ]; then
   echo "No PR found to update"
 else
   pr_number=$(echo $pr_response | jq -r ".[].number")
+  qr_code=$(qrencode -t ansiutf8 ${PAGE_URL})
   gh pr comment $pr_number --body "
   # CircleCI App Distribution
   |   |   |
@@ -17,6 +18,6 @@ else
   | Identifier | ${IDENTIFIER} |
   | Release Note | ${RELEASE_NOTE} |
   | Install URL | ${PAGE_URL} |
-  | QR Code | ![](${QR_URL}) |
+  | QR Code | ${qr_code} |
   "
 fi
