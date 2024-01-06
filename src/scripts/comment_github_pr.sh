@@ -15,6 +15,6 @@ fi
 
 echo $pr_number
 
-gh pr comment $pr_number --edit-last --body "
+gh pr comment $pr_number --body "
 # CircleCI App Distribution
 "
