@@ -60,6 +60,10 @@ cat > index.html <<- _EOF_
                     <td>${CIRCLE_BRANCH}</td>
                   </tr>
                   <tr>
+                    <th>Platform</th>
+                    <td>Android</td>
+                  </tr>
+                  <tr>
                     <th>Name</th>
                     <td>${APP_NAME}</td>
                   </tr>
