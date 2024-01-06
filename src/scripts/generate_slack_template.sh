@@ -3,13 +3,31 @@
 template=$(cat << EOS
 {
   "blocks": [
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": ":warning: Flaky tests detected to *${PROJECT_SLUG}* project."
-      }
-    }
+		{
+			"type": "section",
+			"text": {
+				"text": "A message *with some bold text* and _some italicized text_.",
+				"type": "mrkdwn"
+			},
+			"fields": [
+				{
+					"type": "mrkdwn",
+					"text": "*Priority*"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Type*"
+				},
+				{
+					"type": "plain_text",
+					"text": "High"
+				},
+				{
+					"type": "plain_text",
+					"text": "String"
+				}
+			]
+		}
   ]
 }
 EOS
