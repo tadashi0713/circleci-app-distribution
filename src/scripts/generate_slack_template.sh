@@ -25,7 +25,12 @@ template=$(cat << EOS
         {
 					"type": "mrkdwn",
 					"text": "*Build URL:* <${CIRCLE_BUILD_URL}|${CIRCLE_BUILD_NUM}>"
-				}
+				},
+        {
+          "type": "image",
+          "image_url": "${QR_URL}",
+          "alt_text": "QR Code"
+        }
 			]
 		}
   ]
