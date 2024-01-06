@@ -123,6 +123,7 @@ _EOF_
 PAGE_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/index.html"
 QR_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/qrcode.png"
 
+echo "export PLATFORM='Android'" >> "$BASH_ENV"
 echo "export APP_NAME=${APP_NAME}" >> "$BASH_ENV"
 echo "export RELEASE_VERSION=${RELEASE_VERSION}" >> "$BASH_ENV"
 echo "export BUILD_VERSION=${BUILD_VERSION}" >> "$BASH_ENV"

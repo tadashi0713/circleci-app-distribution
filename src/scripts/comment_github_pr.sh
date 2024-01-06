@@ -9,6 +9,7 @@ else
   # CircleCI App Distribution
   |   |   |
   |---|---|
+  | Platform | ${PLATFORM} |
   | Name | ${APP_NAME} |
   | ReleaseVersion | ${RELEASE_VERSION} |
   | BuildVersion | ${BUILD_VERSION} |
