@@ -94,6 +94,10 @@ cat > index.html <<- _EOF_
                     <td>${CIRCLE_BRANCH}</td>
                   </tr>
                   <tr>
+                    <th>Platform</th>
+                    <td>iOS</td>
+                  </tr>
+                  <tr>
                     <th>Name</th>
                     <td>${APP_NAME}</td>
                   </tr>
@@ -108,10 +112,6 @@ cat > index.html <<- _EOF_
                   <tr>
                     <th>Identifier</th>
                     <td>${IDENTIFIER}</td>
-                  </tr>
-                  <tr>
-                    <th>Release Note</th>
-                    <td>${RELEASE_NOTE}</td>
                   </tr>
                 </tbody>
               </table>
@@ -162,6 +162,5 @@ echo "export APP_NAME=${APP_NAME}" >> "$BASH_ENV"
 echo "export RELEASE_VERSION=${RELEASE_VERSION}" >> "$BASH_ENV"
 echo "export BUILD_VERSION=${BUILD_VERSION}" >> "$BASH_ENV"
 echo "export IDENTIFIER=${IDENTIFIER}" >> "$BASH_ENV"
-echo "export RELEASE_NOTE=${RELEASE_NOTE}" >> "$BASH_ENV"
 echo "export PAGE_URL=${PAGE_URL}" >> "$BASH_ENV"
 echo "export QR_URL=${QR_URL}" >> "$BASH_ENV"

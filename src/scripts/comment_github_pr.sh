@@ -15,7 +15,6 @@ else
   | ReleaseVersion | ${RELEASE_VERSION} |
   | BuildVersion | ${BUILD_VERSION} |
   | Identifier | ${IDENTIFIER} |
-  | Release Note | ${RELEASE_NOTE} |
   | Install URL | ${PAGE_URL} |
   | QR Code | ![](${QR_URL}) |
   "
