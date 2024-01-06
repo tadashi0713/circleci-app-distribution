@@ -83,8 +83,5 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - test-android-machine-env
-            - test-android-docker-env
-            - test-ios-env
           context: orb-publishing
           filters: *release-filters
