@@ -13,3 +13,5 @@ display:
 # If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
 orbs:
   slack: circleci/slack@4.12.5
+  github-cli: circleci/github-cli@2.3.0
+
