@@ -1,10 +1,11 @@
 #!/bin/bash
 
-pr_number=$(gh pr list --head $CIRCLE_BRANCH --state open --json number --jq ".[].number")
+pr_response=$(gh pr list --head $CIRCLE_BRANCH --state open --json number)
 
-if [ $pr_number -eq "" ]; then
+if [ $(echo $pr_response | jq length) -eq 0 ]; then
   echo "No PR found to update"
 else
+  pr_number=$(echo $pr_response | jq -r ".[].number")
   gh pr comment $pr_number --body "
   # CircleCI App Distribution
   |   |   |
