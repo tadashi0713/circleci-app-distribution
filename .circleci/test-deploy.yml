@@ -33,7 +33,7 @@ jobs:
           path: app/bitbar-sample-app.apk
           release_note: "Android Machine"
       - app-distribution/comment_github_pr
-      - app-distribution/notify_slack
+      - app-distribution/notify_slack:
           channel: test
 
   test-android-docker-env:
@@ -46,7 +46,7 @@ jobs:
           path: app/bitbar-sample-app.apk
           release_note: "Android Docker"
       - app-distribution/comment_github_pr
-      - app-distribution/notify_slack
+      - app-distribution/notify_slack:
           channel: test
 
   test-ios-env:
@@ -59,7 +59,7 @@ jobs:
           path: app/bitbar-ios-sample.ipa
           release_note: "iOS"
       - app-distribution/comment_github_pr
-      - app-distribution/notify_slack
+      - app-distribution/notify_slack:
           channel: test
 
 workflows:
