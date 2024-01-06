@@ -14,6 +14,6 @@ else
   | BuildVersion | ${BUILD_VERSION} |
   | Identifier | ${IDENTIFIER} |
   | Release Note | ${RELEASE_NOTE} |
-  | Install URL | ${PAGE_URL} |
+  | Install URL | ${PAGE_URL} \n ![](${QR_URL}) |
   "
 fi
