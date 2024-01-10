@@ -5,21 +5,20 @@ usage:
   orbs:
     ruby: circleci/ruby@2.1.0
     app-distribution: tadashi0713/app-distribution@1.0.0
-
-  distribute_debug:
-    macos:
-      xcode: 14.3.1
-    resource_class: macos.m1.large.gen1
-    steps:
-      - checkout
-      - ruby/install-deps
-      - run: bundle exec fastlane beta
-      - app-distribution/upload_ios:
-          path: CircleCIDemo.ipa
-      - app-distribution/comment_github_pr
-      - app-distribution/notify_slack:
-          channel: test
-
+  jobs:
+    distribute_debug:
+      macos:
+        xcode: 14.3.1
+      resource_class: macos.m1.large.gen1
+      steps:
+        - checkout
+        - ruby/install-deps
+        - run: bundle exec fastlane beta
+        - app-distribution/upload_ios:
+            path: CircleCIDemo.ipa
+        - app-distribution/comment_github_pr
+        - app-distribution/notify_slack:
+            channel: test
   workflows:
     ios-workflow:
       jobs:
