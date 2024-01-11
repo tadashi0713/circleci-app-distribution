@@ -13,7 +13,7 @@ parameters:
     default: GITHUB_TOKEN
   version:
     description: >
-      Specify the full semver versioned tag to use.
+      Specify the version of GitHub CLI which should be full semver versioned tag.
     type: string
     default: 2.40.1
 steps:
