@@ -9,8 +9,6 @@ usage:
     distribute_debug:
       executor:
         name: android/android-docker
-        resource-class: xlarge
-        tag: 2023.11.1
       steps:
         - checkout
         - android/restore-gradle-cache
