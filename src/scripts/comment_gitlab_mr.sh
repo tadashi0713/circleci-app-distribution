@@ -12,7 +12,7 @@ else
 fi
 
 # Login
-glab login --hostname $GITLAB_HOST --token $GITLAB_TOKEN
+glab auth login --hostname $GITLAB_HOST --token $GITLAB_TOKEN
 
 # Comment to Merge Request
 glab mr note --message "
