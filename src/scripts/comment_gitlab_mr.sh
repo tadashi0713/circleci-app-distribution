@@ -11,6 +11,9 @@ else
   exit 1
 fi
 
+# Login
+glab login --hostname $GITLAB_HOST --token $GITLAB_TOKEN
+
 # Comment to Merge Request
 glab mr note --message "
 # CircleCI App Distribution
