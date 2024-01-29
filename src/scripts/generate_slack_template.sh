@@ -10,18 +10,9 @@ template=$(cat << EOS
 				"type": "mrkdwn"
 			},
       "accessory": {
-				"type": "button",
-				"text": {
-					"type": "plain_text",
-					"text": "Go to Distribution Page"
-				},
-				"style": "primary",
-				"url": "${PAGE_URL}"
-			},
-      "accessory": {
 				"type": "image",
-				"image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
-				"alt_text": "cute cat"
+				"image_url": "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${PAGE_URL}",
+				"alt_text": "QR Code"
 			},
 			"fields": [
         {
@@ -47,6 +38,20 @@ template=$(cat << EOS
 				{
 					"type": "mrkdwn",
 					"text": "*Identifier:*\n${IDENTIFIER}"
+				}
+			]
+		},
+    {
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Go to Distribution Page"
+					},
+					"style": "primary",
+					"url": "${PAGE_URL}"
 				}
 			]
 		}
