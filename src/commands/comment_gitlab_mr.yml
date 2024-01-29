@@ -1,6 +1,11 @@
 description: >
   Comment to GitLab Merge Request including QR Code
 parameters:
+  # hostname:
+  #   description: >
+  #     Specify the hostname of the GitLab instance to authenticate with if self-managed(Example: gitlab.example.com). Defaults to GitLab Cloud.
+  #   type: string
+  #   default: ""
   token:
     description: >
       Enter the name of the environment variable containing the GitLab Personal Access token to be used for authentication.
@@ -9,6 +14,7 @@ parameters:
 steps:
   - run:
       environment:
-        GITLAB_TOKEN: <<parameters.hostname>>
+        # GITLAB_HOST: <<parameters.hostname>>
+        GITLAB_TOKEN: <<parameters.token>>
       name: Comment to GitLab Merge Request
       command: <<include(scripts/comment_gitlab_mr.sh)>>
