@@ -12,7 +12,7 @@ else
 fi
 
 # Login
-glab auth login --hostname $GITLAB_HOST --token $GITLAB_TOKEN
+glab auth login --token $GITLAB_TOKEN
 
 # Comment to Merge Request
 glab mr note --message "
@@ -25,5 +25,5 @@ glab mr note --message "
 | BuildVersion | ${BUILD_VERSION} |
 | Identifier | ${IDENTIFIER} |
 | Install URL | ${PAGE_URL} |
-| QR Code | ![](${QR_URL}) |
+| QR Code | ![](https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${PAGE_URL}) |
 "
