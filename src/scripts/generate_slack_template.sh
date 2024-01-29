@@ -18,6 +18,11 @@ template=$(cat << EOS
 				"style": "primary",
 				"url": "${PAGE_URL}"
 			},
+      "accessory": {
+				"type": "image",
+				"image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+				"alt_text": "cute cat"
+			}
 			"fields": [
         {
 					"type": "mrkdwn",
