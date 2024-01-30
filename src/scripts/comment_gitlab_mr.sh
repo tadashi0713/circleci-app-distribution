@@ -12,11 +12,13 @@ else
 fi
 
 # Login
-if [[ $GITLAB_HOST = "" ]]; then
-  glab auth login --token $GITLAB_TOKEN
-else
-  glab auth login --token $GITLAB_TOKEN --hostname $GITLAB_HOST
-fi
+# if [[ $GITLAB_HOST = "" ]]; then
+#   glab auth login --token $GITLAB_TOKEN
+# else
+#   glab auth login --token $GITLAB_TOKEN --hostname $GITLAB_HOST
+# fi
+
+glab auth login --token $GITLAB_TOKEN
 
 # Comment to Merge Request
 mr_res=$(glab mr list --source-branch $CIRCLE_BRANCH)
