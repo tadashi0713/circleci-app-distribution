@@ -12,7 +12,7 @@ else
 fi
 
 # Login
-if [[ $GITLAB_HOST == "" ]]; then
+if [[ $GITLAB_HOST = "" ]]; then
   glab auth login --token $GITLAB_TOKEN
 else
   glab auth login --token $GITLAB_TOKEN --hostname $GITLAB_HOST

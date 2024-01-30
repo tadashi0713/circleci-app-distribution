@@ -3,7 +3,7 @@ description: >
 parameters:
   hostname:
     description: >
-      Specify the hostname of the GitLab instance to authenticate with if self-managed(Example: gitlab.example.com). Defaults to GitLab Cloud.
+      Specify the hostname of the GitLab instance to authenticate with if self-managed(Example: gitlab.example.com). Don't specify if you are using GitLab Cloud.
     type: string
     default: ""
   token:
