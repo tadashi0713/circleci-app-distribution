@@ -11,14 +11,15 @@ else
   exit 1
 fi
 
-# GITLAB_TOKEN_PARAM either contains the token itself or the name of the environment variable that contains the token
-TOKEN=$(eval echo \""$GITLAB_TOKEN_PARAM"\")
 
 # Login
-if [[ $GITLAB_HOST = "" ]]; then
-  glab auth login --token $TOKEN
+export GITLAB_TOKEN=${!PARAM_GITLAB_TOKEN}
+[ -z "$GITLAB_TOKEN" ] && echo "A GitLab token must be supplied. Check the \"token\" parameter." && exit 1
+
+if [[ $PARAM_GITLAB_HOST = "" ]]; then
+  glab auth login --token $GITLAB_TOKEN
 else
-  glab auth login --token $TOKEN --hostname $GITLAB_HOST
+  glab auth login --token $GITLAB_TOKEN --hostname $PARAM_GITLAB_HOST
 fi
 
 # Comment to Merge Request
