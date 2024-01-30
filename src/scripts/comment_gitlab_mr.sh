@@ -11,19 +11,20 @@ else
   exit 1
 fi
 
-# Login
-# if [[ $GITLAB_HOST = "" ]]; then
-#   glab auth login --token $GITLAB_TOKEN
-# else
-#   glab auth login --token $GITLAB_TOKEN --hostname $GITLAB_HOST
-# fi
+# GITLAB_TOKEN_PARAM either contains the token itself or the name of the environment variable that contains the token
+TOKEN=$(eval echo \""$GITLAB_TOKEN_PARAM"\")
 
-glab auth login --token $GITLAB_TOKEN
+# Login
+if [[ $GITLAB_HOST = "" ]]; then
+  glab auth login --token $TOKEN
+else
+  glab auth login --token $TOKEN --hostname $GITLAB_HOST
+fi
 
 # Comment to Merge Request
 mr_res=$(glab mr list --source-branch $CIRCLE_BRANCH)
 if [[ $mr_res =~ "No open merge requests match your search in" ]]; then
-  echo $mr_res
+  echo "$mr_res"
 else
   glab mr note --message "
   # CircleCI App Distribution
