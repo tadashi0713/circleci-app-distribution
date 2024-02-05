@@ -11,7 +11,6 @@ else
   exit 1
 fi
 
-
 # Login
 export GITLAB_TOKEN=${!PARAM_GITLAB_TOKEN}
 [ -z "$GITLAB_TOKEN" ] && echo "A GitLab token must be supplied. Check the \"token\" parameter." && exit 1
@@ -25,7 +24,7 @@ fi
 # Comment to Merge Request
 mr_res=$(glab mr list --source-branch $CIRCLE_BRANCH)
 if [[ $mr_res =~ "No open merge requests match your search in" ]]; then
-  echo "$mr_res"
+  printf '\n%s' "$mr_res"
 else
   glab mr note --message "
   # CircleCI App Distribution

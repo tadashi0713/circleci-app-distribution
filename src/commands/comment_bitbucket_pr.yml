@@ -1,0 +1,25 @@
+description: >
+  Comment to Bitbucket Pull Request including QR Code, only available Bitbucket Cloud.
+parameters:
+  token:
+    description: >
+      Enter the name of the environment variable containing the Bitbucket Access token to be used for authentication.
+      If not specified, BITBUCKET_TOKEN environment variable will be used.
+      https://support.atlassian.com/bitbucket-cloud/docs/access-tokens/
+    type: env_var_name
+    default: BITBUCKET_TOKEN
+  repo_slug:
+    description: >
+      This can either be the repository slug or the UUID of the repository, surrounded by curly-braces, for example: {repository UUID}.
+    type: string
+  workspace:
+    description: >
+      This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example: {workspace UUID}.
+    type: string
+steps:
+  - run:
+      environment:
+        PARAM_BITBUCKET_REPO_SLUG: <<parameters.repo_slug>>
+        PARAM_BITBUCKET_WORKSPACE: <<parameters.workspace>>
+      name: Comment to Bitbucket Pull Request
+      command: <<include(scripts/comment_bitbucket_pr.sh)>>
