@@ -21,5 +21,6 @@ steps:
       environment:
         PARAM_BITBUCKET_REPO_SLUG: <<parameters.repo_slug>>
         PARAM_BITBUCKET_WORKSPACE: <<parameters.workspace>>
+        PARAM_BITBUCKET_TOKEN: <<parameters.token>>
       name: Comment to Bitbucket Pull Request
       command: <<include(scripts/comment_bitbucket_pr.sh)>>
