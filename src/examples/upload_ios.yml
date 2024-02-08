@@ -4,7 +4,7 @@ usage:
   version: 2.1
   orbs:
     ruby: circleci/ruby@2.1.0
-    app-distribution: tadashi0713/app-distribution@1.0.0
+    app-distribution: tadashi0713/app-distribution@1.1.0
   jobs:
     distribute_debug:
       macos:
