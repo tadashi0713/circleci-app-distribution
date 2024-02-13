@@ -4,6 +4,12 @@ parameters:
   path:
     type: string
     description: "Path of your app binary"
+  token:
+    description: >
+      Enter the name of the environment variable containing either CircleCI's Personal token or Project token.
+      https://circleci.com/docs/managing-api-tokens/
+    type: env_var_name
+    default: CIRCLE_TOKEN
 steps:
   - run:
       name: Install packages needed for this Orb
@@ -14,6 +20,7 @@ steps:
       name: Generate page
       environment:
         APP_PATH: <<parameters.path>>
+        PARAM_CIRCLE_TOKEN: <<parameters.token>>
       command: <<include(scripts/generate_ios_plist_and_page.sh)>>
   - store_artifacts:
       path: ios.plist

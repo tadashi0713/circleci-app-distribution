@@ -9,8 +9,11 @@ RELEASE_VERSION=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundle
 BUILD_VERSION=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleVersion')
 IDENTIFIER=$(echo "${APP_DATA}" | jq -r '.info_plist | .content | .CFBundleIdentifier')
 
+export CIRCLE_TOKEN=${!PARAM_CIRCLE_TOKEN}
+[ -z "$CIRCLE_TOKEN" ] && echo "A CircleCI token must be supplied. Check the \"token\" parameter." && exit 1
+
 # Generate Plist
-APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}"
+APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}?circle-token=${CIRCLE_TOKEN}"
 
 cat > ios.plist <<- _EOF_
 <?xml version="1.0" encoding="UTF-8"?>
@@ -47,7 +50,7 @@ cat > ios.plist <<- _EOF_
 _EOF_
 
 # Generate page
-PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist"
+PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist?circle-token=${CIRCLE_TOKEN}"
 
 cat > index.html <<- _EOF_
 <!DOCTYPE html>
