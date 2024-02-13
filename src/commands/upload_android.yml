@@ -20,5 +20,3 @@ steps:
   - run:
       name: Generate QRCode(You can see QRCode in this step)
       command: <<include(scripts/generate_qrcode.sh)>>
-  - store_artifacts:
-      path: qrcode.png
