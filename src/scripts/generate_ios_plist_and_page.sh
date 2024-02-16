@@ -14,9 +14,6 @@ export CIRCLE_TOKEN=${!PARAM_CIRCLE_TOKEN}
 
 # Generate Plist
 APP_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/${APP_PATH}?circle-token=${CIRCLE_TOKEN}"
-APP_URL_ENCODE=$(echo $APP_URL | jq -Rr '@uri')
-
-echo $APP_URL_ENCODE
 
 cat > ios.plist <<- _EOF_
 <?xml version="1.0" encoding="UTF-8"?>
@@ -32,7 +29,7 @@ cat > ios.plist <<- _EOF_
           <key>kind</key>
           <string>software-package</string>
           <key>url</key>
-          <string>${APP_URL_ENCODE}</string>
+          <string>${APP_URL}</string>
         </dict>
       </array>
       <key>metadata</key>
@@ -53,7 +50,7 @@ cat > ios.plist <<- _EOF_
 _EOF_
 
 # Generate page
-PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist?circle-token=${CIRCLE_TOKEN}"
+PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist"
 
 cat > index.html <<- _EOF_
 <!DOCTYPE html>
