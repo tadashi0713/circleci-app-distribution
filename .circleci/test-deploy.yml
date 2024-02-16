@@ -26,7 +26,7 @@ jobs:
   test-android-machine-env:
     executor:
       name: android/android-machine
-      tag: latest
+      tag: 2024.01.1
     steps:
       - checkout
       - app-distribution/upload_android:
@@ -38,7 +38,7 @@ jobs:
   test-android-docker-env:
     executor:
       name: android/android-docker
-      tag: latest
+      tag: 2024.01.1
     steps:
       - checkout
       - app-distribution/upload_android:
