@@ -50,7 +50,8 @@ cat > ios.plist <<- _EOF_
 _EOF_
 
 # Generate page
-PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist"
+PLIST_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/ios.plist?circle-token=${CIRCLE_TOKEN}"
+PLIST_URL_ENCODE=$(echo $PLIST_URL | jq -Rr '@uri')
 
 cat > index.html <<- _EOF_
 <!DOCTYPE html>
@@ -121,7 +122,7 @@ cat > index.html <<- _EOF_
             </div>
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                <a class="button is-dark" href="itms-services://?action=download-manifest&amp;url=${PLIST_URL}">
+                <a class="button is-dark" href="itms-services://?action=download-manifest&amp;url=${PLIST_URL_ENCODE}">
                   <span class="icon">
                     <i class="fas fa-download"></i>
                   </span>
